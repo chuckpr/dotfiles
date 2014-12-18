@@ -8,7 +8,7 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 " let Vundle manage vundle
-Plugin 'gmarik/vundle'
+Plugin 'gmarik/Vundle'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'lervag/vim-latex'
 Plugin 'kchmck/vim-coffee-script'
@@ -17,6 +17,7 @@ Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 Plugin 'github-theme'
 Plugin 'luochen1990/rainbow'
+Plugin 'flazz/vim-colorschemes'
 " Plugin 'SirVer/ultisnips'
 " Plugin 'scrooloose/syntastic'
 " Plugin 'vim-scripts/LaTeX-Suite-aka-Vim-LaTeX'
@@ -40,7 +41,7 @@ syntax enable
 " Enable file type detection and do language-dependent indenting.
 filetype plugin indent on
 " set omnifunc=syntaxcomplete#Complete
-set background=dark
+colorscheme desert
 set number
 set ruler
 set showcmd
