@@ -1,0 +1,123 @@
+" Use Vim settings, rather than Vi settings (much better!).
+" This must be first, because it changes other options as a side effect.
+set nocompatible
+
+filetype off
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+" let Vundle manage vundle
+Plugin 'gmarik/vundle'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'lervag/vim-latex'
+Plugin 'kchmck/vim-coffee-script'
+Plugin 'pangloss/vim-javascript'
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
+Plugin 'github-theme'
+Plugin 'luochen1990/rainbow'
+" Plugin 'SirVer/ultisnips'
+" Plugin 'scrooloose/syntastic'
+" Plugin 'vim-scripts/LaTeX-Suite-aka-Vim-LaTeX'
+" Plugin 'mattn/emmet-vim'
+
+" Trigger configuration. Do not use <tab> if you use
+" https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+"
+" " If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="horizontal"
+
+" Make backspace behave in a sane manner.
+set backspace=indent,eol,start
+
+" Switch syntax highlighting on
+syntax enable
+
+" Enable file type detection and do language-dependent indenting.
+filetype plugin indent on
+" set omnifunc=syntaxcomplete#Complete
+set background=dark
+colorscheme solarized
+set number
+set ruler
+set showcmd
+set nobackup
+set noswapfile
+set list
+cmap w!! w !sudo tee % >/dev/null
+let g:tex_flavor="latex"
+
+" fast in and out of insert mode and saving
+nnoremap ; :
+nnoremap ii <Esc>
+inoremap ii <Esc> 
+nnoremap '' <Esc>:w<Enter>
+inoremap '' <Esc>:w<Enter>
+
+" misc
+nnoremap <Space> :
+nnoremap ,q :q<Enter>
+nnoremap <C-e> A
+nnoremap <C-a> I
+nnoremap ,so :so $MYVIMRC<CR>
+nnoremap ,ev :e $MYVIMRC<CR>
+set virtualedit=all
+set wildmenu
+
+" clipboard setting
+execute "set <M-x>=\ex"
+execute "set <M-v>=\ev"
+execute "set <M-c>=\ec"
+vnoremap <M-c> "+y
+vnoremap <M-x> "+x
+nnoremap <M-v> "+P
+vnoremap <M-v> "+P
+inoremap <M-v> <Esc>"+Pa
+
+" for writing sip papers
+nnoremap ,it <Esc>bi\textit{<Esc>ea}<Esc>
+inoremap ,it <Esc>bi\textit{<Esc>ea}
+inoremap ,oo OTU
+inoremap ,cc $^{13}$C
+nnoremap ,cc i$^{13}$C<Esc>
+inoremap ,rr \ref{
+inoremap ,ci \citep{
+nnoremap ,ci i\citep{<Esc>
+inoremap ,ct \citet{
+nnoremap ,ct i\citet{<Esc>
+
+au BufRead *.tex setlocal spell 
+autocmd BufNewFile,BufReadPost *.coffee setl shiftwidth=2 expandtab
+autocmd BufNewFile,BufReadPost *.coffee set tabstop=2
+autocmd BufNewFile,BufReadPost *.coffee setl foldmethod=indent
+autocmd BufNewFile,BufReadPost *.coffee nnoremap ,m :make -b<Enter>
+autocmd BufNewFile,BufReadPost *.coffee vnoremap C :'<,'>CoffeeCompile<Enter>
+let coffee_make_options = '--bare'
+let coffee_indent_keep_current = 1
+setl scrollbind
+
+let g:rainbow_conf = {
+    \   'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick'],
+    \   'ctermfgs': ['lightblue', 'lightyellow', 'lightcyan', 'lightmagenta'],
+    \   'operators': '_,_',
+    \   'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold'],
+    \   'separately': {
+    \       '*': {},
+    \       'tex': {
+    \           'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/'],
+    \       },
+    \       'lisp': {
+    \           'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick', 'darkorchid3'],
+    \       },
+    \       'vim': {
+    \           'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/', 'start=/{/ end=/}/ fold', 'start=/(/ end=/)/ containedin=vimFuncBody', 'start=/\[/ end=/\]/ containedin=vimFuncBody', 'start=/{/ end=/}/ fold containedin=vimFuncBody'],
+    \       },
+    \       'html': {
+    \           'parentheses': ['start=/\v\<((area|base|br|col|embed|hr|img|input|keygen|link|menuitem|meta|param|source|track|wbr)[ >])@!\z([-_:a-zA-Z0-9]+)(\s+[-_:a-zA-Z0-9]+(\=("[^"]*"|'."'".'[^'."'".']*'."'".'|[^ '."'".'"><=`]*))?)*\>/ end=#</\z1># fold'],
+    \       },
+    \       'css': 0,
+    \   }
+    \}
