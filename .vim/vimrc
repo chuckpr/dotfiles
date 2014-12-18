@@ -49,7 +49,10 @@ set noswapfile
 set list
 cmap w!! w !sudo tee % >/dev/null
 let g:tex_flavor="latex"
-
+nnoremap ,h <C-w>h
+nnoremap ,j <C-w>j
+nnoremap ,k <C-w>k
+nnoremap ,l <C-w>l
 " fast in and out of insert mode and saving
 nnoremap ; :
 nnoremap ii <Esc>
