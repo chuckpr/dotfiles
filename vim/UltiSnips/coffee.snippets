@@ -8,35 +8,32 @@ chart = d3.select ".chart"
   .attr "height", height + margin.top + margin.bottom
   .append "g"
   .attr "transform", "translate(" + margin.left + "," + margin.top + ")"
-
 $0
 endsnippet
 
 snippet linear "linear d3 scale"
 d3.scale.linear()
   .range [${1:height}, ${2:0}]
-
 $0
 endsnippet
 
 snippet ordinal "ordinal d3 scale"
 d3.scale.ordinal()
-
+  .rangeRound${1:Points} [${2:0}, ${3:width}]
+$0
 $0
 endsnippet
 
 snippet axis "d3 axis"
 d3.svg.axis()
   .scale ${1:x}
-  .orient ${2:"bottom"}
+  .orient "${2:bottom}"
   .tickSize ${3:-height}, ${4:0}, ${5:0}
-
 $0
 endsnippet
 
 snippet domain "domain"
 $1.domain [d3.min(${2:data}, (d) -> d.$3), d3.max($2, (d) -> d.$3)]
-
 $0
 endsnippet
 
@@ -46,35 +43,34 @@ ${1:chart}
   .attr "class", "axis"  
   .attr "transform", "translate(0," + ${2:height} + ")"
   .call ${3:x}Axis
-
 $0
 endsnippet
 
 snippet csv "bring in the data!" b
 d3.csv(${1:"readme.csv"}, type, (data) ->
   $0
+
+  undefined
 )
 endsnippet
 
-snippet scatter "basic scatter chart" b
+snippet scat "basic scatter chart" b
 update = (${1:data}) ->
   points = ${2:chart}.selectAll "${3:.point}"
-  .data $1, (d) -> d.$3
+  .data $1, (d) -> d.$4
 
   points.enter().append "circle"
     .attr "class", "${3/^\.//}"
-    .attr "cy", (d) -> ${5:y} d.$5
-    .attr "cx", (d) -> ${7:x} d.$7
-    .attr "r", (d) -> ${9:5}
-    .attr "fill", (d) -> ${10:black}
+    .attr "cy", (d) -> ${5:y} d.$6
+    .attr "cx", (d) -> ${8:x} d.$9
+    .attr "r", (d) -> ${10:5}
+    .attr "fill", (d) -> ${11:black}
   
   points.exit()
     .remove()
-$0
-endsnippet
 
-snippet clog "console.log " b
-console.log $0
+  undefined
+$0
 endsnippet
 
 snippet c10 "category 10 color scale" 
@@ -83,7 +79,7 @@ endsnippet
 
 snippet type "typer function" b
 type = (d) ->
-  $0
+  d$0
 endsnippet
 
 snippet addbrush "add the brush" b
@@ -101,6 +97,7 @@ brushend = () ->
   if brush.empty()
     chart.selectAll(".$5")
       .classed(".$5", false)
+  undefined
 
 brush = d3.svg.brush()
   .x ${1:x}
@@ -113,7 +110,61 @@ ${3:chart}.append "g"
   .call brush
 endsnippet
 
+snippet circ "append circle" 
+.append "circle"
+.attr "cx", (d) -> d.${1:x}
+.attr "cy", (d) -> d.${2:y}
+.attr "r", (d) -> ${3:5}
+.attr "fill", (d) -> ${4:black}$0
+endsnippet
 
+snippet path "append path" 
+.append "path"
+.data [${1:d}]
+.attr "d", ${2:line}Func$0
+endsnippet
+
+snippet rxt "rotate x tick labels"
+.selectAll "text"
+.attr "transform", "translate(-${1:15},${2:15})rotate(${3:-45})"$0
+.style "text-anchor", "end"
+endsnippet
+
+snippet xlab "x axis label"
+.append "text"
+.attr "transform", () -> 
+  "translate(" + ${1:width/2} + "," + ${2:margin.bottom/2} + ")"
+.attr "text-anchor", "${3:middle}"
+.text "$4"$0
+endsnippet
+
+snippet ylab "y axis label"
+.append "text"
+.attr "transform", () -> "translate(" + -${1:margin.left/2} + "," + ${2:height/2} + ")rotate(${3:-90})"
+.attr "text-anchor", "middle"
+.text "$4"$0
+endsnippet
+
+snippet jitter "jitter" 
+sign = () -> if Math.random() < 0.5 then -1 else 1
+jitter = () -> sign() * Math.random() * ${1:10}$0
+endsnippet
+
+snippet nest "d3 nest"
+d3.nest ${1:data}$0
+endsnippet
+
+snippet key "nest key"
+.key (d) -> d.$1$0
+endsnippet
+
+snippet map "nest map"
+.map ${1:data}, d3.map$0
+endsnippet
+
+snippet max "max from array (or min)" 
+d3.${1:max} ($2.$3 for $2 in $4)$0
+endsnippet
 
 
 
