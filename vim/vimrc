@@ -18,15 +18,19 @@ Plugin 'pangloss/vim-javascript'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 Plugin 'github-theme'
-Plugin 'tpope/vim-sensible' 
+Plugin 'tpope/vim-sensible'
 Plugin 'flazz/vim-colorschemes'
 Plugin 'L9'
 Plugin 'FuzzyFinder'
-Plugin 'jacekd/vim-iawriter' 
-Plugin 'mikewest/vimroom'
-Plugin 'Reedes/vim-pencil'
-Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+Plugin 'ap/vim-css-color'
+Plugin 'junegunn/goyo.vim'
+Plugin 'junegunn/limelight.vim'
+Plugin 'reedes/vim-wordy'
 Plugin 'sjl/gundo.vim'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'godlygeek/tabular'
+Plugin 'plasticboy/vim-markdown'
+Plugin 'bling/vim-airline'
 
 call vundle#end()
 " }}}
@@ -34,9 +38,8 @@ call vundle#end()
 " Settings {{{
 filetype plugin indent on
 syntax enable
+let mapleader=","
 set omnifunc=syntaxcomplete#Complete
-set background=dark
-colorscheme solarized
 set number
 set ruler
 set showcmd
@@ -52,15 +55,19 @@ set expandtab
 set virtualedit=all
 set wildmenu
 set hlsearch
-let mapleader=","
 set scrolloff=999
-set cursorline
+set cursorline cursorcolumn
 set showmatch
 set incsearch
 set hlsearch
 set foldenable
 set foldlevelstart=10
 set modelines=1
+set t_Co=256
+colorscheme 256-grayvim
+" let g:ycm_filetype_blacklist = {
+"       \ 'tex' : 1}
+
 " }}}
 
 " Mappings  {{{
@@ -70,7 +77,7 @@ cmap w!! w !sudo tee % >/dev/null
 nnoremap ,h <C-w>h
 nnoremap ,j <C-w>j
 nnoremap ,k <C-w>k
-nnoremap ,l <C-w>l 
+nnoremap ,l <C-w>l
 nnoremap j gj
 nnoremap k gk
 nnoremap gV `[v`]
@@ -78,12 +85,18 @@ noremap '' <Esc>:w<CR>
 nnoremap ,q :q<CR>;sldkfa;sldaj;lfdks
 nnoremap <C-e> A
 nnoremap <C-a> I
-nnoremap ,so :so $MYVIMRC<CR>
+nnoremap ,so :so $MYVIMRC<CR>zv
 nnoremap ,ev :e $MYVIMRC<CR>
 nnoremap <Leader>sc:let &scrolloff=999-&scrolloff<CR>
 inoremap <Tab> <C-v><C-f>
 nnoremap <Leader><space> :nohlsearch<CR>
 nnoremap <Leader>u :GundoToggle<CR>
+nnoremap zM zMzv
+nnoremap <Leader>V :Goyo<CR>
+nnoremap <space> za
+nnoremap <Leader>bd :bd<CR>
+au User GoyoEnter Limelight
+au User GoyoLeave Limelight!
 " }}}
 
 " clipboard setting {{{
@@ -104,6 +117,7 @@ inoremap ,oo OTU
 inoremap ,cc $^{13}$C
 nnoremap ,cc i$^{13}$C<Esc>
 inoremap ,rr \ref{
+nnoremap <Leader>lt :LatexTOC<CR>
 " }}}
 " }}}
 
@@ -116,21 +130,12 @@ function! EvinceSearch ()
     execute "silent !evince_forward_search " . LatexBox_GetOutputFile() . ' ' . line(".") . ' ' . '%:p'
     execute ':redraw!'
 endfun
-nmap ,ls :call EvinceSearch()<CR>
+noremap ,ls :call EvinceSearch()<CR>
 let g:LatexBox_latexmk_preview_continuously=1
 let g:LatexBox_latexmk_options="-synctex=1"
-let g:LatexBox_output_type="pdf" 
-let g:LatexBox_viewer="evince" 
-let g:LatexBox_quickfix=1 
-let b:main_tex_file="full_paper.tex"
-au FileType tex setl spell
-au FileType tex colorscheme iawriter
-au FileType tex setl linespace=10
-au FileType tex setl formatoptions+=a
-au FileType tex setl background=light
-au FileType tex setl guifont=Cousine:h12
-au FileType tex setl cole=2
-au FileType tex setl foldlevelstart=1
+let g:LatexBox_output_type="pdf"
+let g:LatexBox_viewer="evince"
+let g:LatexBox_quickfix=1
 let g:tex_flavor="latex"
 " }}}
 
@@ -139,9 +144,8 @@ autocmd FileType coffee setl shiftwidth=2 expandtab
 autocmd FileType coffee setl tabstop=2  smarttab
 autocmd FileType coffee setl foldmethod=indent
 autocmd FileType coffee nnoremap ,m :make -b<CR>
-" autocmd BufWritePost *.coffee silent make -b!
+autocmd FileType coffee nnoremap ,C vip:'<,'>CoffeeCompile<CR>
 let coffee_make_options = '--bare'
-autocmd FileType coffee vnoremap C :'<,'>CoffeeCompile<CR>
 let coffee_watch_vert = 1
 let coffee_make_options = '--bare'
 let coffee_indent_keep_current = 1
@@ -149,15 +153,39 @@ setl scrollbind
 " }}}
 
 " UltiSnips config {{{
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+let g:UltiSnipsExpandTrigger="<C-j>"
+let g:UltiSnipsJumpForwardTrigger="<C-j>"
+let g:UltiSnipsJumpBackwardTrigger="<C-z>"
 let g:UltiSnipsEditSplit="horizontal"
-
-if $COLORTERM == 'gnome-terminal'
-  set t_Co=256
-endif
 " }}}
 "}}}
+
+" FT specific settings {{{
+
+" tex {{{
+au FileType tex setl linespace=10
+au FileType tex setl cole=2
+au FileType tex setl foldlevel=2
+noremap Q gqap
+command! Prose inoremap <buffer> . .<C-G>u|
+            \ inoremap <buffer> ! !<C-G>u|
+            \ inoremap <buffer> ? ?<C-G>u|
+            \ setlocal spell spelllang=en
+            \     nolist nowrap tw=74 fo=t1 nonu|
+            \ augroup PROSE|
+            \   autocmd InsertEnter <buffer> set fo+=a|
+            \   autocmd InsertLeave <buffer> set fo-=a|
+            \ augroup END
+
+command! Code silent! iunmap <buffer> .|
+            \ silent! iunmap <buffer> !|
+            \ silent! iunmap <buffer> ?|
+            \ setlocal nospell list nowrap
+            \     tw=74 fo=cqr1 showbreak=… nu|
+            \ silent! autocmd! PROSE * <buffer>
+au BufEnter *.tex setl ft=tex
+" }}}
+
+" }}}
 
 " vim:foldmethod=marker:foldlevel=0
