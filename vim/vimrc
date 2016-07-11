@@ -10,61 +10,64 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
+" plugin manager
 Plugin 'gmarik/Vundle.vim'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'kchmck/vim-coffee-script'
-Plugin 'LaTeX-Box-Team/LaTeX-Box'
-Plugin 'pangloss/vim-javascript'
-Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
-Plugin 'github-theme'
-Plugin 'tpope/vim-sensible'
-Plugin 'flazz/vim-colorschemes'
-Plugin 'L9'
-Plugin 'FuzzyFinder'
-Plugin 'ap/vim-css-color'
-Plugin 'junegunn/goyo.vim'
-Plugin 'junegunn/limelight.vim'
-Plugin 'reedes/vim-wordy'
-Plugin 'sjl/gundo.vim'
+
+" completion
 Plugin 'Valloric/YouCompleteMe'
-Plugin 'godlygeek/tabular'
-Plugin 'plasticboy/vim-markdown'
-Plugin 'bling/vim-airline'
+
+" colorscheme
+Plugin 'jnurmine/Zenburn'
+
+" Python folding
+Plugin 'tmhedberg/SimpylFold'
 
 call vundle#end()
 " }}}
 
 " Settings {{{
+" display line numbers
+set number
+
+" line number, column number, virtual column number, and relative position in
+" status line
+set ruler
+
+" shows info about the current command, e.g. shows number of lines selected
+" when using ctrl-V
+set showcmd
+
+" no more backup files (files with ~ extension)
+set nobackup
+
+" no swapfile
+set noswapfile
+
+" display unprintible characters like $ at end of line
+set list
+
+" you can have unwritten changes in a file and open a new file
+set hidden
+
+" search highlighting on by default
+set hlsearch
+
 filetype plugin indent on
 syntax enable
-let mapleader=","
-set omnifunc=syntaxcomplete#Complete
-set number
-set ruler
-set showcmd
-set nobackup
-set noswapfile
-set list
-set hidden
-set showcmd
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
-set expandtab
+
 set virtualedit=all
 set wildmenu
-set hlsearch
 set scrolloff=999
 set cursorline cursorcolumn
 set showmatch
 set incsearch
 set hlsearch
 set foldenable
-set foldlevelstart=10
 set modelines=1
 set t_Co=256
-colorscheme 256-grayvim
+
+" use the zenburn colorscheme
+colorscheme zenburn
 " let g:ycm_filetype_blacklist = {
 "       \ 'tex' : 1}
 
@@ -72,31 +75,35 @@ colorscheme 256-grayvim
 
 " Mappings  {{{
 " misc {{{
-inoremap ii <Esc>
+"
+" this allows you to save a file as the root user even if you didn't
+" open the file with root privileges.
 cmap w!! w !sudo tee % >/dev/null
+
+" map window navigation commands to shorthand versions.
 nnoremap ,h <C-w>h
 nnoremap ,j <C-w>j
 nnoremap ,k <C-w>k
 nnoremap ,l <C-w>l
+
+" switch behavior of j/gj and k/gk
 nnoremap j gj
 nnoremap k gk
-nnoremap gV `[v`]
-noremap '' <Esc>:w<CR>
-nnoremap ,q :q<CR>;sldkfa;sldaj;lfdks
-nnoremap <C-e> A
-nnoremap <C-a> I
+nnoremap gj j
+nnoremap gk k
+
+" source the vimrc
 nnoremap ,so :so $MYVIMRC<CR>zv
+
+" edit my vimrc
 nnoremap ,ev :e $MYVIMRC<CR>
-nnoremap <Leader>sc:let &scrolloff=999-&scrolloff<CR>
-inoremap <Tab> <C-v><C-f>
-nnoremap <Leader><space> :nohlsearch<CR>
-nnoremap <Leader>u :GundoToggle<CR>
-nnoremap zM zMzv
-nnoremap <Leader>V :Goyo<CR>
+
+" quick mapping for toggling search highlight
+nnoremap <Leader>nhl :nohlsearch<CR>
+nnoremap <Leader>hl :set hlsearch<CR>
+
+" toggle fold with spacebar
 nnoremap <space> za
-nnoremap <Leader>bd :bd<CR>
-au User GoyoEnter Limelight
-au User GoyoLeave Limelight!
 " }}}
 
 " clipboard setting {{{
@@ -110,82 +117,38 @@ vnoremap <M-v> "+P
 inoremap <M-v> <Esc>"+Pa
 " }}}
 
-" for writing sip papers {{{
-nnoremap ,it <Esc>bi\textit{<Esc>ea}<Esc>
-inoremap ,it <Esc>bi\textit{<Esc>ea}
-inoremap ,oo OTU
-inoremap ,cc $^{13}$C
-nnoremap ,cc i$^{13}$C<Esc>
-inoremap ,rr \ref{
-nnoremap <Leader>lt :LatexTOC<CR>
 " }}}
-" }}}
-
-" plugin settings {{{
-" latex-box {{{
-let g:LatexBox_latexmk_options =
-          \ '-pdflatex="pdflatex -synctex=1 %O %S"'
-let g:LatexBox_Folding=1
-function! EvinceSearch ()
-    execute "silent !evince_forward_search " . LatexBox_GetOutputFile() . ' ' . line(".") . ' ' . '%:p'
-    execute ':redraw!'
-endfun
-noremap ,ls :call EvinceSearch()<CR>
-let g:LatexBox_latexmk_preview_continuously=1
-let g:LatexBox_latexmk_options="-synctex=1"
-let g:LatexBox_output_type="pdf"
-let g:LatexBox_viewer="evince"
-let g:LatexBox_quickfix=1
-let g:tex_flavor="latex"
-" }}}
-
-" coffeescript settings {{{
-autocmd FileType coffee setl shiftwidth=2 expandtab
-autocmd FileType coffee setl tabstop=2  smarttab
-autocmd FileType coffee setl foldmethod=indent
-autocmd FileType coffee nnoremap ,m :make -b<CR>
-autocmd FileType coffee nnoremap ,C vip:'<,'>CoffeeCompile<CR>
-let coffee_make_options = '--bare'
-let coffee_watch_vert = 1
-let coffee_make_options = '--bare'
-let coffee_indent_keep_current = 1
-setl scrollbind
-" }}}
-
-" UltiSnips config {{{
-let g:UltiSnipsExpandTrigger="<C-j>"
-let g:UltiSnipsJumpForwardTrigger="<C-j>"
-let g:UltiSnipsJumpBackwardTrigger="<C-z>"
-let g:UltiSnipsEditSplit="horizontal"
-" }}}
-"}}}
 
 " FT specific settings {{{
 
-" tex {{{
-au FileType tex setl linespace=10
-au FileType tex setl cole=2
-au FileType tex setl foldlevel=2
-noremap Q gqap
-command! Prose inoremap <buffer> . .<C-G>u|
-            \ inoremap <buffer> ! !<C-G>u|
-            \ inoremap <buffer> ? ?<C-G>u|
-            \ setlocal spell spelllang=en
-            \     nolist nowrap tw=74 fo=t1 nonu|
-            \ augroup PROSE|
-            \   autocmd InsertEnter <buffer> set fo+=a|
-            \   autocmd InsertLeave <buffer> set fo-=a|
-            \ augroup END
+" python {{{
+" PEP8
+let python_highlight_all=1
+au BufNewFile,BufRead *.py
+    \ set tabstop=4 |
+    \ set softtabstop=4 |
+    \ set shiftwidth=4 |
+    \ set textwidth=79 |
+    \ set expandtab |
+    \ set autoindent |
+    \ set fileformat=unix
+au BufRead,BufNewFile *.py,*.pyw,*.c,*.h 
+    \ highlight BadWhitespace ctermbg=red guibg=darkred |
+    \ match BadWhitespace /\s\+$/
 
-command! Code silent! iunmap <buffer> .|
-            \ silent! iunmap <buffer> !|
-            \ silent! iunmap <buffer> ?|
-            \ setlocal nospell list nowrap
-            \     tw=74 fo=cqr1 showbreak=… nu|
-            \ silent! autocmd! PROSE * <buffer>
-au BufEnter *.tex setl ft=tex
 " }}}
 
 " }}}
+
+" plugin settings {{{
+"
+" YCM config {{{
+"
+
+let g:ycm_autoclose_preview_window_after_completion=1
+map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
+
+"}}}
+"
 
 " vim:foldmethod=marker:foldlevel=0
