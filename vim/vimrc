@@ -105,18 +105,6 @@ nnoremap <Leader>hl :set hlsearch<CR>
 " toggle fold with spacebar
 nnoremap <space> za
 " }}}
-
-" clipboard setting {{{
-execute "set <M-x>=\ex"
-execute "set <M-v>=\ev"
-execute "set <M-c>=\ec"
-vnoremap <M-c> "+y
-vnoremap <M-x> "+x
-nnoremap <M-v> "+P
-vnoremap <M-v> "+P
-inoremap <M-v> <Esc>"+Pa
-" }}}
-
 " }}}
 
 " FT specific settings {{{
