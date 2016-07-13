@@ -22,6 +22,10 @@ Plugin 'jnurmine/Zenburn'
 " Python folding
 Plugin 'tmhedberg/SimpylFold'
 
+" complete pairs (e.g. parentheses)
+Plugin 'cohama/lexima.vim'
+
+
 call vundle#end()
 " }}}
 
@@ -75,7 +79,11 @@ colorscheme zenburn
 
 " Mappings  {{{
 " misc {{{
-"
+
+" indent one space at a time regardless of shiftwidth
+vnoremap <C-l> :s/^/ /<CR>gv
+vnoremap <C-h> :s/^\s//<CR>gv
+
 " this allows you to save a file as the root user even if you didn't
 " open the file with root privileges.
 cmap w!! w !sudo tee % >/dev/null
@@ -147,6 +155,12 @@ au BufRead,BufNewFile *.py,*.pyw,*.c,*.h
 
 let g:ycm_autoclose_preview_window_after_completion=1
 map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
+
+"}}}
+" Python folding config {{{
+"
+
+let g:SimpylFold_docstring_preview = 1
 
 "}}}
 "
