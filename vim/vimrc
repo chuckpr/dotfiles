@@ -10,6 +10,9 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
+" better indent Python
+Plugin 'hynek/vim-python-pep8-indent'
+
 " plugin manager
 Plugin 'gmarik/Vundle.vim'
 
@@ -30,6 +33,9 @@ call vundle#end()
 " }}}
 
 " Settings {{{
+" So backspace works as expected in OSX
+set backspace=2
+
 " display line numbers
 set number
 
@@ -113,18 +119,6 @@ nnoremap <Leader>hl :set hlsearch<CR>
 " toggle fold with spacebar
 nnoremap <space> za
 " }}}
-
-" clipboard setting {{{
-execute "set <M-x>=\ex"
-execute "set <M-v>=\ev"
-execute "set <M-c>=\ec"
-vnoremap <M-c> "+y
-vnoremap <M-x> "+x
-nnoremap <M-v> "+P
-vnoremap <M-v> "+P
-inoremap <M-v> <Esc>"+Pa
-" }}}
-
 " }}}
 
 " FT specific settings {{{
