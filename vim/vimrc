@@ -133,7 +133,9 @@ au BufNewFile,BufRead *.py
     \ set textwidth=79 |
     \ set expandtab |
     \ set autoindent |
-    \ set fileformat=unix
+    \ set fileformat=unix |
+    \ set formatprg=par\ -w 79
+
 au BufRead,BufNewFile *.py,*.pyw,*.c,*.h 
     \ highlight BadWhitespace ctermbg=red guibg=darkred |
     \ match BadWhitespace /\s\+$/
