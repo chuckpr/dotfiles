@@ -19,8 +19,11 @@ Plugin 'gmarik/Vundle.vim'
 " completion
 Plugin 'Valloric/YouCompleteMe'
 
-" colorscheme
+" colorschemes
 Plugin 'jnurmine/Zenburn'
+Plugin 'endel/vim-github-colorscheme'
+Plugin 'morhetz/gruvbox'
+Plugin 'freeo/vim-kalisi'
 
 " Python folding
 Plugin 'tmhedberg/SimpylFold'
@@ -33,6 +36,9 @@ call vundle#end()
 " }}}
 
 " Settings {{{
+" set the colorscheme
+colorscheme kalisi
+
 " So backspace works as expected in OSX
 set backspace=2
 
@@ -76,10 +82,6 @@ set foldenable
 set modelines=1
 set t_Co=256
 
-" use the zenburn colorscheme
-colorscheme zenburn
-" let g:ycm_filetype_blacklist = {
-"       \ 'tex' : 1}
 
 " }}}
 
