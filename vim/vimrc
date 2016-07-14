@@ -38,6 +38,7 @@ call vundle#end()
 " Settings {{{
 " set the colorscheme
 colorscheme kalisi
+set background=light
 
 " So backspace works as expected in OSX
 set backspace=2
