@@ -10,6 +10,9 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
+" surround!
+Plugin 'tpope/vim-surround'
+
 " better indent Python
 Plugin 'hynek/vim-python-pep8-indent'
 
@@ -136,8 +139,7 @@ au BufNewFile,BufRead *.py
     \ set textwidth=79 |
     \ set expandtab |
     \ set autoindent |
-    \ set fileformat=unix |
-    \ set formatprg=par\ -w 79
+    \ set fileformat=unix
 
 au BufRead,BufNewFile *.py,*.pyw,*.c,*.h 
     \ highlight BadWhitespace ctermbg=red guibg=darkred |
