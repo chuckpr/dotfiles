@@ -9,7 +9,12 @@ filetype off
 
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
+" Syntax python 
+ Plugin 'hdima/python-syntax'
 
+" copy to tmux session
+Plugin 'jpalardy/vim-slime'
+"
 " better indent Python
 Plugin 'hynek/vim-python-pep8-indent'
 
@@ -20,9 +25,6 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'Valloric/YouCompleteMe'
 
 " colorschemes
-Plugin 'jnurmine/Zenburn'
-Plugin 'endel/vim-github-colorscheme'
-Plugin 'morhetz/gruvbox'
 Plugin 'freeo/vim-kalisi'
 
 " Python folding
@@ -37,6 +39,12 @@ call vundle#end()
 
 " Settings {{{
 " set the colorscheme
+"
+set t_Co=256
+" in case t_Co alone doesn't work, add this as well:
+let &t_AB="\e[48;5;%dm"
+let &t_AF="\e[38;5;%dm"
+
 colorscheme kalisi
 set background=light
 
@@ -72,16 +80,13 @@ set hlsearch
 filetype plugin indent on
 syntax enable
 
-set virtualedit=all
 set wildmenu
-set scrolloff=999
 set cursorline cursorcolumn
 set showmatch
 set incsearch
 set hlsearch
 set foldenable
 set modelines=1
-set t_Co=256
 
 
 " }}}
@@ -136,8 +141,7 @@ au BufNewFile,BufRead *.py
     \ set textwidth=79 |
     \ set expandtab |
     \ set autoindent |
-    \ set fileformat=unix |
-    \ set formatprg=par\ -w 79
+    \ set fileformat=unix
 
 au BufRead,BufNewFile *.py,*.pyw,*.c,*.h 
     \ highlight BadWhitespace ctermbg=red guibg=darkred |
@@ -157,11 +161,15 @@ map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
 "}}}
 " Python folding config {{{
-"
 
 let g:SimpylFold_docstring_preview = 1
 
 "}}}
-"
+" vim-slime {{{
+
+let g:slime_target = "tmux"
+let g:slime_python_ipython = 0
+
+"}}}
 
 " vim:foldmethod=marker:foldlevel=0
