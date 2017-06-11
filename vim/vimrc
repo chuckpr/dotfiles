@@ -9,6 +9,15 @@ filetype off
 
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
+" supertab
+Bundle 'ervandew/supertab'
+
+" snippets
+Bundle 'SirVer/ultisnips'
+
+" vim/tmux navigation
+Bundle 'christoomey/vim-tmux-navigator'
+
 " Syntax python 
  Plugin 'hdima/python-syntax'
 
@@ -36,14 +45,23 @@ Plugin 'tmhedberg/SimpylFold'
 " complete pairs (e.g. parentheses)
 Plugin 'cohama/lexima.vim'
 
+" dockerfile syntax highlighting
+Plugin 'docker/docker', {'rtp': '/contrib/syntax/vim/'}
+
+" ansible-vim YAML
+Plugin 'pearofducks/ansivle-vim'
 
 call vundle#end()
 " }}}
 
 " Settings {{{
+" turn on omnicomplete
+set omnifunc=syntaxcomplete#Complete
+
 " set the colorscheme
 "
 set t_Co=256
+set t_ut=
 " in case t_Co alone doesn't work, add this as well:
 let &t_AB="\e[48;5;%dm"
 let &t_AF="\e[38;5;%dm"
@@ -96,20 +114,22 @@ set modelines=1
 
 " Mappings  {{{
 " misc {{{
+" visual mode dot command
+xnoremap . :normal .<CR>
+
+" visual selection to clipboard
+xnoremap <C-c> "+y
+
+" paste from clipboard
+nnoremap <leader>pp "+p
 
 " indent one space at a time regardless of shiftwidth
-vnoremap <C-l> :s/^/ /<CR>gv
-vnoremap <C-h> :s/^\s//<CR>gv
+xnoremap <C-l> :s/^/ /<CR>gv
+xnoremap <C-h> :s/^\s//<CR>gv
 
 " this allows you to save a file as the root user even if you didn't
 " open the file with root privileges.
 cmap w!! w !sudo tee % >/dev/null
-
-" map window navigation commands to shorthand versions.
-nnoremap ,h <C-w>h
-nnoremap ,j <C-w>j
-nnoremap ,k <C-w>k
-nnoremap ,l <C-w>l
 
 " switch behavior of j/gj and k/gk
 nnoremap j gj
@@ -118,10 +138,10 @@ nnoremap gj j
 nnoremap gk k
 
 " source the vimrc
-nnoremap ,so :so $MYVIMRC<CR>zv
+nnoremap <leader>so :so $MYVIMRC<CR>zv
 
 " edit my vimrc
-nnoremap ,ev :e $MYVIMRC<CR>
+nnoremap <leader>ev :e $MYVIMRC<CR>
 
 " quick mapping for toggling search highlight
 nnoremap <Leader>nhl :nohlsearch<CR>
@@ -151,17 +171,76 @@ au BufRead,BufNewFile *.py,*.pyw,*.c,*.h
     \ match BadWhitespace /\s\+$/
 
 " }}}
+"
+" bash {{{
+au BufNewFile,BufRead *.sh
+    \ set tabstop=4 |
+    \ set softtabstop=4 |
+    \ set shiftwidth=4 |
+    \ set textwidth=79 |
+    \ set expandtab |
+    \ set autoindent |
+    \ set fileformat=unix
+
+au BufRead,BufNewFile *.sh, 
+    \ highlight BadWhitespace ctermbg=red guibg=darkred |
+    \ match BadWhitespace /\s\+$/
+
+" }}}
+"
+" yaml {{{
+au BufNewFile,BufRead *.yaml,*.yml
+    \ set tabstop=2 |
+    \ set softtabstop=2 |
+    \ set shiftwidth=2 |
+    \ set textwidth=79 |
+    \ set expandtab |
+    \ set autoindent |
+    \ set fileformat=unix
+" }}}
+"
+" markdown {{{
+au BufNewFile,BufRead *.md
+    \ set tabstop=4 |
+    \ set softtabstop=4 |
+    \ set shiftwidth=4 |
+    \ set textwidth=79 |
+    \ set expandtab |
+    \ set autoindent |
+    \ set fileformat=unix
+" }}}
+"
+" Dockerfile {{{
+au BufNewFile,BufRead Dockerfile
+    \ set tabstop=4 |
+    \ set softtabstop=4 |
+    \ set shiftwidth=4 |
+    \ set textwidth=79 |
+    \ set expandtab |
+    \ set autoindent |
+    \ set fileformat=unix
+" }}}
 
 " }}}
 
-" plugin settings {{{
+" plugin settings and mappings {{{
 "
 " YCM config {{{
+")
+let g:ycm_goto_buffer_command = 'horizontal-split'
+let g:ycm_min_num_of_chars_for_completion = 1
+let g:ycm_add_preview_to_completeopt = 0
+let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+let g:ycm_complete_in_strings = 1
+let g:ycm_collect_identifiers_from_comments_and_strings = 1
+let g:ycm_server_python_interpreter = 'python'
+let g:ycm_autoclose_preview_window_after_completion=0
+let g:ycm_autoclose_preview_window_after_insertion=1
+map <leader>go  :YcmCompleter GoToDefinitionElseDeclaration<CR>
+map <leader>ge  :YcmCompleter GetDoc<CR>
+map! <leader>ge  <Esc>:YcmCompleter GetDoc<CR>a
 "
-
-let g:ycm_autoclose_preview_window_after_completion=1
-map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
-
 "}}}
 " Python folding config {{{
 
@@ -174,5 +253,20 @@ let g:slime_target = "tmux"
 let g:slime_python_ipython = 0
 
 "}}}
+" supertab {{{
+
+let g:SuperTabDefaultCompletionType = '<C-n>'
+let g:SuperTabContextDefaultCompletionType = "<C-n>"
+let g:SuperTabCrMapping = 0
+
+"}}}
+" ultisnips {{{
+" better key bindings for UltiSnipsExpandTrigger
+let g:UltiSnipsExpandTrigger = "<tab>"
+let g:UltiSnipsJumpForwardTrigger = "<tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+
+"}}}
+
 
 " vim:foldmethod=marker:foldlevel=0
