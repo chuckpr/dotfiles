@@ -10,6 +10,14 @@ endif
 
 call plug#begin('~/.vim/plugged')
 
+" google codefmt
+Plug 'google/vim-maktaba'
+Plug 'google/vim-codefmt'
+Plug 'google/vim-glaive'
+
+" ale
+Plug 'w0rp/ale'
+
 " supertab
 Plug 'ervandew/supertab'
 
