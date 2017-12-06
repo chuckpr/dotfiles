@@ -1,60 +1,65 @@
 " vimrc
+"
+" vim-plug {{{
 
-" Vundle {{{
-" Use Vim settings, rather than Vi settings (much better!).
-" This must be first, because it changes other options as a side effect.
-set nocompatible
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
 
-filetype off
+call plug#begin('~/.vim/plugged')
 
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
 " supertab
-Bundle 'ervandew/supertab'
+Plug 'ervandew/supertab'
 
 " snippets
-Bundle 'SirVer/ultisnips'
+Plug 'SirVer/ultisnips'
 
 " vim/tmux navigation
-Bundle 'christoomey/vim-tmux-navigator'
+Plug 'christoomey/vim-tmux-navigator'
 
 " Syntax python 
- Plugin 'hdima/python-syntax'
+Plug 'hdima/python-syntax'
 
 " copy to tmux session
-Plugin 'jpalardy/vim-slime'
+Plug 'jpalardy/vim-slime'
 "
 " surround!
-Plugin 'tpope/vim-surround'
+Plug 'tpope/vim-surround'
 
 " better indent Python
-Plugin 'hynek/vim-python-pep8-indent'
+Plug 'hynek/vim-python-pep8-indent'
 
 " plugin manager
-Plugin 'gmarik/Vundle.vim'
+Plug 'gmarik/Vundle.vim'
 
 " completion
-Plugin 'Valloric/YouCompleteMe'
+Plug 'Valloric/YouCompleteMe'
 
 " colorschemes
-Plugin 'freeo/vim-kalisi'
+Plug 'freeo/vim-kalisi'
 
 " Python folding
-Plugin 'tmhedberg/SimpylFold'
+Plug 'tmhedberg/SimpylFold'
 
 " complete pairs (e.g. parentheses)
-Plugin 'cohama/lexima.vim'
+Plug 'cohama/lexima.vim'
 
 " dockerfile syntax highlighting
-Plugin 'docker/docker', {'rtp': '/contrib/syntax/vim/'}
+Plug 'docker/docker', {'rtp': '/contrib/syntax/vim/'}
 
-" ansible-vim YAML
-Plugin 'pearofducks/ansivle-vim'
+call plug#end()
 
-call vundle#end()
 " }}}
 
 " Settings {{{
+"
+set nocompatible
+"
+" YCM settings
+let g:ycm_python_binary_path = 'python'
+
 " turn on omnicomplete
 set omnifunc=syntaxcomplete#Complete
 
