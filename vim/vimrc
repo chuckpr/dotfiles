@@ -10,6 +10,10 @@ endif
 
 call plug#begin('~/.vim/plugged')
 
+" SQL utilities
+Plug 'vim-scripts/SQLUtilities'
+Plug 'vim-scripts/Align'
+
 " google codefmt
 Plug 'google/vim-maktaba'
 Plug 'google/vim-codefmt'
