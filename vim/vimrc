@@ -10,6 +10,18 @@ endif
 
 call plug#begin('~/.vim/plugged')
 
+" vim-tbone
+Plug 'tpope/vim-tbone'
+
+" vim-commentary
+Plug 'tpope/vim-commentary'
+
+" vim-sensible
+Plug 'tpope/vim-sensible'
+
+" eunuch
+Plug 'tpope/vim-eunuch'
+
 " google codefmt
 Plug 'google/vim-maktaba'
 Plug 'google/vim-codefmt'
@@ -30,9 +42,6 @@ Plug 'christoomey/vim-tmux-navigator'
 " Syntax python 
 Plug 'hdima/python-syntax'
 
-" copy to tmux session
-Plug 'jpalardy/vim-slime'
-"
 " surround!
 Plug 'tpope/vim-surround'
 
