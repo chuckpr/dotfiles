@@ -10,8 +10,24 @@ endif
 
 call plug#begin('~/.vim/plugged')
 
-" vim-tbone
-Plug 'tpope/vim-tbone'
+" slime
+Plug 'jpalardy/vim-slime'
+
+" nerdtree
+Plug 'scrooloose/nerdtree'
+
+" narrow region
+Plug 'chrisbra/NrrwRgn'
+
+" deoplete
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+endif
+Plug 'zchee/deoplete-jedi'
 
 " vim-commentary
 Plug 'tpope/vim-commentary'
@@ -34,7 +50,7 @@ Plug 'w0rp/ale'
 Plug 'ervandew/supertab'
 
 " snippets
-Plug 'SirVer/ultisnips'
+" Plug 'SirVer/ultisnips'
 
 " vim/tmux navigation
 Plug 'christoomey/vim-tmux-navigator'
@@ -48,20 +64,14 @@ Plug 'tpope/vim-surround'
 " better indent Python
 Plug 'hynek/vim-python-pep8-indent'
 
-" plugin manager
-Plug 'gmarik/Vundle.vim'
-
-" completion
-Plug 'Valloric/YouCompleteMe'
-
 " colorschemes
 Plug 'freeo/vim-kalisi'
 
 " Python folding
 Plug 'tmhedberg/SimpylFold'
 
-" complete pairs (e.g. parentheses)
-Plug 'cohama/lexima.vim'
+" auto pairs
+Plug 'jiangmiao/auto-pairs'
 
 " dockerfile syntax highlighting
 Plug 'docker/docker', {'rtp': '/contrib/syntax/vim/'}
@@ -74,11 +84,8 @@ call plug#end()
 "
 set nocompatible
 "
-" YCM settings
-let g:ycm_python_binary_path = 'python'
-
 " turn on omnicomplete
-set omnifunc=syntaxcomplete#Complete
+" set omnifunc=syntaxcomplete#Complete
 
 " set the colorscheme
 "
@@ -148,10 +155,6 @@ nnoremap <leader>pp "+p
 " indent one space at a time regardless of shiftwidth
 xnoremap <C-l> :s/^/ /<CR>gv
 xnoremap <C-h> :s/^\s//<CR>gv
-
-" this allows you to save a file as the root user even if you didn't
-" open the file with root privileges.
-cmap w!! w !sudo tee % >/dev/null
 
 " switch behavior of j/gj and k/gk
 nnoremap j gj
@@ -247,22 +250,30 @@ au BufNewFile,BufRead Dockerfile
 
 " plugin settings and mappings {{{
 "
-" YCM config {{{
-")
-let g:ycm_goto_buffer_command = 'horizontal-split'
-let g:ycm_min_num_of_chars_for_completion = 1
-let g:ycm_add_preview_to_completeopt = 0
-let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
-let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
-let g:ycm_complete_in_strings = 1
-let g:ycm_collect_identifiers_from_comments_and_strings = 1
-let g:ycm_server_python_interpreter = 'python'
-let g:ycm_autoclose_preview_window_after_completion=0
-let g:ycm_autoclose_preview_window_after_insertion=1
-map <leader>go  :YcmCompleter GoToDefinitionElseDeclaration<CR>
-map <leader>ge  :YcmCompleter GetDoc<CR>
-map! <leader>ge  <Esc>:YcmCompleter GetDoc<CR>a
+" narrow region window {{{
+
+let g:nrrw_rgn_vert = 1
+let g:nrrw_rgn_resize_window = 'relative'
+
+" }}}
+" auto pairs {{{
+
+let g:AutoPairsShortcutFastWrap = '<C-o>e'
+let g:AutoPairsShortcutToggle = '<C-o>p'
+let g:AutoPairsShortcutJump = '<C-o>n'
+let g:AutoPairsShortcutBackInsert = '<C-o>b'
+
+" }}}
+" deoplete {{{
 "
+let g:deoplete#enable_at_startup = 1
+let g:deoplete#sources#jedi#show_docstring = 0
+
+"}}}
+" simplyfold {{{
+
+let g:SimpylFold_docstring_preview = 1
+
 "}}}
 " Python folding config {{{
 
@@ -284,11 +295,11 @@ let g:SuperTabCrMapping = 0
 "}}}
 " ultisnips {{{
 " better key bindings for UltiSnipsExpandTrigger
+"
 let g:UltiSnipsExpandTrigger = "<tab>"
 let g:UltiSnipsJumpForwardTrigger = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 
 "}}}
-
 
 " vim:foldmethod=marker:foldlevel=0
