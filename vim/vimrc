@@ -12,8 +12,11 @@ call minpac#add('Shougo/deoplete.nvim')
 call minpac#add('roxma/nvim-yarp')
 call minpac#add('roxma/vim-hug-neovim-rpc')
 call minpac#add('zchee/deoplete-jedi')
+
 call minpac#add('davidhalter/jedi-vim')
 call minpac#add('wokalski/autocomplete-flow')
+call minpac#add('vyzyv/vimpyter')
+call minpac#add('hkupty/iron.nvim')
 
 " }}}
 "
@@ -32,9 +35,6 @@ Plug 'mattn/emmet-vim'
 
 " slime
 Plug 'jpalardy/vim-slime'
-
-" nerdtree
-Plug 'scrooloose/nerdtree'
 
 " narrow region
 Plug 'chrisbra/NrrwRgn'
