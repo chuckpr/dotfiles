@@ -36,8 +36,6 @@ Plug 'mattn/emmet-vim'
 " slime
 Plug 'jpalardy/vim-slime'
 
-" narrow region
-Plug 'chrisbra/NrrwRgn'
 
 " vim-commentary
 Plug 'tpope/vim-commentary'
@@ -90,20 +88,9 @@ call plug#end()
 " Settings {{{
 "
 set nocompatible
-"
-" turn on omnicomplete
-" set omnifunc=syntaxcomplete#Complete
-
-" set the colorscheme
-"
-set t_Co=256
-set t_ut=
-" in case t_Co alone doesn't work, add this as well:
-let &t_AB="\e[48;5;%dm"
-let &t_AF="\e[38;5;%dm"
 
 colorscheme kalisi
-set background=light
+set background=dark
 
 " So backspace works as expected in OSX
 set backspace=2
@@ -141,7 +128,6 @@ set wildmenu
 set cursorline cursorcolumn
 set showmatch
 set incsearch
-set hlsearch
 set foldenable
 set modelines=1
 
@@ -149,19 +135,13 @@ set modelines=1
 " }}}
 
 " Mappings  {{{
-" misc {{{
+
 " visual mode dot command
 xnoremap . :normal .<CR>
 
-" visual selection to clipboard
-xnoremap <C-c> "+y
-
-" paste from clipboard
-nnoremap <leader>pp "+p
-
 " indent one space at a time regardless of shiftwidth
-xnoremap <C-l> :s/^/ /<CR>gv
-xnoremap <C-h> :s/^\s//<CR>gv
+xnoremap <S-l> :s/^/ /<CR>gv
+xnoremap <S-h> :s/^\s//<CR>gv
 
 " switch behavior of j/gj and k/gk
 nnoremap j gj
@@ -181,7 +161,7 @@ nnoremap <Leader>hl :set hlsearch<CR>
 
 " toggle fold with spacebar
 nnoremap <space> za
-" }}}
+
 " }}}
 
 " FT specific settings {{{
@@ -206,9 +186,9 @@ au BufRead,BufNewFile *.py,*.pyw,*.c,*.h
 "
 " bash {{{
 au BufNewFile,BufRead *.sh
-    \ set tabstop=4 |
-    \ set softtabstop=4 |
-    \ set shiftwidth=4 |
+    \ set tabstop=2 |
+    \ set softtabstop=2 |
+    \ set shiftwidth=2 |
     \ set textwidth=79 |
     \ set expandtab |
     \ set autoindent |
@@ -263,12 +243,6 @@ let g:ale_lint_on_enter = 0
 let g:ale_lint_on_text_changed = 'never'
 
 " }}}
-" narrow region window {{{
-
-let g:nrrw_rgn_vert = 1
-let g:nrrw_rgn_resize_window = 'relative'
-
-" }}}
 " auto pairs {{{
 
 let g:AutoPairsShortcutFastWrap = '<C-o>e'
@@ -291,11 +265,6 @@ let g:deoplete#sources#jedi#server_timeout = 90
 let g:SimpylFold_docstring_preview = 1
 
 "}}}
-" Python folding config {{{
-
-let g:SimpylFold_docstring_preview = 1
-
-"}}}
 " vim-slime {{{
 
 let g:slime_target = "tmux"
@@ -307,14 +276,6 @@ let g:slime_python_ipython = 0
 let g:SuperTabDefaultCompletionType = '<C-n>'
 let g:SuperTabContextDefaultCompletionType = "<C-n>"
 let g:SuperTabCrMapping = 0
-
-"}}}
-" ultisnips {{{
-" better key bindings for UltiSnipsExpandTrigger
-"
-let g:UltiSnipsExpandTrigger = "<tab>"
-let g:UltiSnipsJumpForwardTrigger = "<tab>"
-let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 
 "}}}
 
