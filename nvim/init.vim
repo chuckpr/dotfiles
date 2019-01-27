@@ -1,10 +1,6 @@
 packadd minpac
 call minpac#init()
 
-call minpac#add('rakr/vim-one')
-set bg=dark
-colo one
-
 " autocomplete with ncm2
 call minpac#add('ncm2/ncm2')
 call minpac#add('roxma/nvim-yarp')
@@ -15,6 +11,9 @@ set completeopt=noinsert,menuone,noselect
 " Use <TAB> to select the popup menu:
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+highlight Pmenu ctermbg=73 ctermfg=white
+highlight PmenuSel ctermbg=24 ctermfg=white
 
 " current buffer
 call minpac#add('ncm2/ncm2-bufword')
@@ -46,3 +45,8 @@ au BufNewFile,BufRead *.py
     \ set textwidth=79 |
     \ set expandtab |
     \ set fileformat=unix
+
+au BufNewFile,BufRead *.js,*.json.*.yaml
+    \ set softtabstop=2 |
+    \ set shiftwidth=2 |
+    \ set expandtab
