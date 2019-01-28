@@ -1,6 +1,11 @@
 packadd minpac
 call minpac#init()
 
+"linting"
+call minpac#add('w0rp/ale') 
+highlight ALEWarning ctermbg=240
+let g:ale_linters = {'bash': ['shellcheck']}
+
 " autocomplete with ncm2
 call minpac#add('ncm2/ncm2')
 call minpac#add('roxma/nvim-yarp')
