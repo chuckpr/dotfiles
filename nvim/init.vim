@@ -1,10 +1,18 @@
 packadd minpac
 call minpac#init()
 
-"linting"
+"linting
 call minpac#add('w0rp/ale') 
 highlight ALEWarning ctermbg=240
 let g:ale_linters = {'bash': ['shellcheck']}
+
+" Folding for Python  
+call minpac#add('tmhedberg/SimpylFold')
+let g:SimplyFold_docstring_preview = 1
+let g:SimpylFold_fold_import = 0
+
+" toggle fold with spacebar
+nnoremap <space> za
 
 " autocomplete with ncm2
 call minpac#add('ncm2/ncm2')
@@ -51,7 +59,7 @@ au BufNewFile,BufRead *.py
     \ set expandtab |
     \ set fileformat=unix
 
-au BufNewFile,BufRead *.js,*.json.*.yaml
+au BufNewFile,BufRead *.js,*.json,*.yaml,*.yml
     \ set softtabstop=2 |
     \ set shiftwidth=2 |
     \ set expandtab
