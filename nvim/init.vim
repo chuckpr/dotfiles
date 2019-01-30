@@ -1,6 +1,11 @@
 packadd minpac
 call minpac#init()
 
+" fzf
+call minpac#add('junegunn/fzf')
+nnoremap <C-p> :<C-u>FZF<CR>
+call minpac#add('junegunn/fzf.vim')
+
 "linting
 call minpac#add('w0rp/ale') 
 highlight ALEWarning ctermbg=240
