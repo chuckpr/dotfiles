@@ -5,6 +5,7 @@ call minpac#init()
 call minpac#add('w0rp/ale') 
 highlight ALEWarning ctermbg=240
 let g:ale_linters = {'bash': ['shellcheck']}
+let g:ale_fixers = {'python': ['autopep8'], 'yaml': ['prettier']}
 
 " Folding for Python  
 call minpac#add('tmhedberg/SimpylFold')
@@ -50,8 +51,35 @@ call minpac#add('ktakata/minpac', {'type': 'opt'})
 command! PacUpdate call minpac#update()
 command! PacClean call minpac#clean()
 
-set autoindent
 
+" SETTINGS
+"
+set autoindent
+set wildmenu
+set wildmode=list:longest,full
+" line number, column number, virtual column number, and relative position in
+" status line
+set ruler
+" no more backup files (files with ~ extension)
+" no swapfile
+set noswapfile
+" display unprintible characters like $ at end of line
+set list
+" you can have unwritten changes in a file and open a new file
+set hidden
+" search highlighting on by default
+set hlsearch
+
+
+" MAPPINGS
+"
+" source init.vim
+nnoremap <leader>so :so $MYVIMRC<CR>zv
+" edit init.vim
+nnoremap <leader>ev :e $MYVIMRC<CR>
+
+" FILETYPE SETTINGS
+"
 au BufNewFile,BufRead *.py
     \ set softtabstop=4 |
     \ set shiftwidth=4 |
