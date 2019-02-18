@@ -4,13 +4,16 @@ call minpac#init()
 " Python indent
 call minpac#add('Vimjas/vim-python-pep8-indent')
 
+" Commentary
+call minpac#add('tpope/vim-commentary')
+
 " fzf
 call minpac#add('junegunn/fzf')
 nnoremap <C-p> :<C-u>FZF<CR>
 call minpac#add('junegunn/fzf.vim')
 
 "linting
-call minpac#add('w0rp/ale') 
+call minpac#add('w0rp/ale')
 let g:ale_enabled = 0 " Turn on when needed
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
@@ -18,7 +21,7 @@ highlight ALEWarning ctermbg=240
 let g:ale_linters = {'bash': ['shellcheck']}
 let g:ale_fixers = {'python': ['autopep8'], 'yaml': ['prettier']}
 
-" Folding for Python  
+" Folding for Python
 call minpac#add('tmhedberg/SimpylFold')
 let g:SimplyFold_docstring_preview = 1
 let g:SimpylFold_fold_import = 0
