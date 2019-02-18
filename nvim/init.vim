@@ -1,6 +1,9 @@
 packadd minpac
 call minpac#init()
 
+" Python indent
+call minpac#add('Vimjas/vim-python-pep8-indent')
+
 " fzf
 call minpac#add('junegunn/fzf')
 nnoremap <C-p> :<C-u>FZF<CR>
@@ -8,6 +11,7 @@ call minpac#add('junegunn/fzf.vim')
 
 "linting
 call minpac#add('w0rp/ale') 
+let g:ale_enabled = 0 " Turn on when needed
 highlight ALEWarning ctermbg=240
 let g:ale_linters = {'bash': ['shellcheck']}
 let g:ale_fixers = {'python': ['autopep8'], 'yaml': ['prettier']}
@@ -37,7 +41,7 @@ highlight PmenuSel ctermbg=24 ctermfg=white
 " current buffer
 call minpac#add('ncm2/ncm2-bufword')
 
-" path completion
+" path completion " Disable until exliciptly required
 call minpac#add('ncm2/ncm2-path')
 
 " Jedi
@@ -49,12 +53,16 @@ call minpac#add('tpope/vim-repeat')
 
 " complete pairs (quotes, brackets, parentheses, etc.)
 call minpac#add('jiangmiao/auto-pairs')
+au Filetype vim let b:AutoPairs = {"(": ")", "{": "}", "'": "'"}
 
 " minpac updates itself
 call minpac#add('ktakata/minpac', {'type': 'opt'})
 
 command! PacUpdate call minpac#update()
 command! PacClean call minpac#clean()
+
+
+
 
 
 " SETTINGS
@@ -74,6 +82,8 @@ set list
 set hidden
 " search highlighting on by default
 set hlsearch
+" turn on modeline
+set modeline
 
 
 " MAPPINGS
@@ -82,6 +92,9 @@ set hlsearch
 nnoremap <leader>so :so $MYVIMRC<CR>zv
 " edit init.vim
 nnoremap <leader>ev :e $MYVIMRC<CR>
+
+" toggle ALE
+nnoremap <leader>at :ALEToggle<CR>
 
 " FILETYPE SETTINGS
 "
@@ -96,3 +109,7 @@ au BufNewFile,BufRead *.js,*.json,*.yaml,*.yml
     \ set softtabstop=2 |
     \ set shiftwidth=2 |
     \ set expandtab
+
+" This is access ALE's docs
+packloadall
+silent! helptags ALL
