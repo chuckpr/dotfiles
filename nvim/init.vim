@@ -12,6 +12,8 @@ call minpac#add('junegunn/fzf.vim')
 "linting
 call minpac#add('w0rp/ale') 
 let g:ale_enabled = 0 " Turn on when needed
+nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+nmap <silent> <C-j> <Plug>(ale_next_wrap)
 highlight ALEWarning ctermbg=240
 let g:ale_linters = {'bash': ['shellcheck']}
 let g:ale_fixers = {'python': ['autopep8'], 'yaml': ['prettier']}
