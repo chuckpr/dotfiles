@@ -21,6 +21,10 @@ highlight ALEWarning ctermbg=240
 let g:ale_linters = {'bash': ['shellcheck']}
 let g:ale_fixers = {'python': ['autopep8'], 'yaml': ['prettier']}
 
+" jedi-vim
+call minpac#add('davidhalter/jedi-vim')
+let g:jedi#completions_enabled = 0
+
 " Folding for Python
 call minpac#add('tmhedberg/SimpylFold')
 let g:SimplyFold_docstring_preview = 1
@@ -72,6 +76,7 @@ command! PacClean call minpac#clean()
 
 " SETTINGS
 "
+set hidden
 set autoindent
 set wildmenu
 set wildmode=list:longest,full
@@ -106,6 +111,13 @@ nnoremap <leader>at :ALEToggle<CR>
 au BufNewFile,BufRead *.py
     \ set softtabstop=4 |
     \ set shiftwidth=4 |
+    \ set textwidth=79 |
+    \ set expandtab |
+    \ set fileformat=unix
+
+au BufNewFile,BufRead *.sh
+    \ set softtabstop=2 |
+    \ set shiftwidth=2 |
     \ set textwidth=79 |
     \ set expandtab |
     \ set fileformat=unix
