@@ -24,7 +24,8 @@ let g:ale_enabled = 0 " Turn on when needed
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
 highlight ALEWarning ctermbg=240
-let g:ale_linters = {'bash': ['shellcheck']}
+let g:ale_linters = {'bash': ['shellcheck'], 'python': ['flake8', 'pylint']}
+let g:ale_python_pylint_options = '--errors-only'
 let g:ale_fixers = {'python': ['autopep8'], 'yaml': ['prettier']}
 
 " Folding for Python
@@ -35,18 +36,16 @@ let g:SimpylFold_fold_import = 0
 " toggle fold with spacebar
 nnoremap <space> za
 
-" Deoplete
-call minpac#add('Shougo/deoplete.nvim', {'do': 'UpdateRemotePlugins'})
-let g:deoplete#enable_at_startup = 1
-call minpac#add('deoplete-plugins/deoplete-jedi')
-call minpac#add('tbodt/deoplete-tabnine', { 'do': './install.sh' })
+" COC
+call minpac#add('neoclide/coc.nvim', {'branch': 'release'})
+set statusline^=%{coc#status()}
 
 " Use <TAB> to select the popup menu:
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
-highlight Pmenu ctermbg=73 ctermfg=white
-highlight PmenuSel ctermbg=24 ctermfg=white
+highlight Pmenu ctermbg=61 ctermfg=15 cterm=None
+highlight PmenuSel ctermfg=16 ctermbg=84 cterm=bold
 
 " tpope
 call minpac#add('tpope/vim-surround')
@@ -54,6 +53,10 @@ call minpac#add('tpope/vim-repeat')
 
 " complete pairs (quotes, brackets, parentheses, etc.)
 call minpac#add('tmsvg/pear-tree')
+
+" Status line
+call minpac#add('liuchengxu/eleline.vim')
+set laststatus=2
 
 " minpac updates itself
 call minpac#add('ktakata/minpac', {'type': 'opt'})
@@ -114,6 +117,13 @@ au BufNewFile,BufRead *.sh
     \ set expandtab |
     \ set fileformat=unix
 
+au BufNewFile,BufRead Dockerfile*
+    \ set softtabstop=2 |
+    \ set shiftwidth=2 |
+    \ set textwidth=79 |
+    \ set expandtab |
+    \ set fileformat=unix
+
 au BufNewFile,BufRead *.js,*.json,*.yaml,*.yml
     \ set softtabstop=2 |
     \ set shiftwidth=2 |
@@ -123,3 +133,17 @@ au BufNewFile,BufRead *.js,*.json,*.yaml,*.yml
 " This is to access ALE's docs
 packloadall
 silent! helptags ALL
+
+" COC settings
+" use <tab> for trigger completion and navigate to the next complete item
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~ '\s'
+endfunction
+
+inoremap <silent><expr> <Tab>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<Tab>" :
+      \ coc#refresh()
+
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"

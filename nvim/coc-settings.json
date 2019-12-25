@@ -1,0 +1,24 @@
+{
+  "python.jediEnabled": false,
+  "json.enable": false,
+  "coc.preferences.diagnostic.displayByAle": true,
+  "languageserver": {
+    "python": {
+      "command": "python",
+      "args": [
+        "-mypyls",
+        "-vv",
+        "--log-file",
+        "/tmp/lsp_python.log"
+      ],
+      "filetypes": [
+        "python"
+      ]
+    },
+    "dockerfile": {
+      "command": "docker-langserver",
+      "filetypes": ["dockerfile"],
+      "args": ["--stdio"]
+    }
+  }
+}
