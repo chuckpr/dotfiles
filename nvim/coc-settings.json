@@ -1,24 +1,39 @@
 {
   "python.jediEnabled": false,
-  "json.enable": false,
-  "coc.preferences.diagnostic.displayByAle": true,
+  "python.formatting.provider": "black",
+  "python.formatting.blackPath": "/usr/local/bin/black",
+  "python.linting.prospectorEnabled": true,
+  "python.linting.prospectorPath": "prospector",
+  "python.sortImports.path": "isort",
+  "json.enable": true,
+  "coc.preferences.hoverTarget": "float",
+  "coc.preferences.jumpCommand": "edit",
+  "coc.preferences.formatOnSaveFiletypes": [
+    "python",
+    "json",
+    "javascript",
+    "css",
+    "html"
+  ],
+  "coc.preferences.formatOnType": true,
+  "coc.preferences.formatOnInsertLeave": true,
+  "coc.preferences.formatOnTypeFiletypes": ["javascript", "python"],
+  "highlight.colors.enable": true,
+  "highlight.document.enable": true,
+  "coc.preferences.colorSupport": true,
+  "json.format.enable": true,
+  "suggest.floatEnable": true,
   "languageserver": {
-    "python": {
-      "command": "python",
-      "args": [
-        "-mypyls",
-        "-vv",
-        "--log-file",
-        "/tmp/lsp_python.log"
-      ],
-      "filetypes": [
-        "python"
-      ]
-    },
     "dockerfile": {
       "command": "docker-langserver",
       "filetypes": ["dockerfile"],
       "args": ["--stdio"]
+    },
+    "bash": {
+      "command": "bash-language-server",
+      "args": ["start"],
+      "filetypes": ["sh"],
+      "ignoredRootPaths": ["~"]
     }
   }
 }

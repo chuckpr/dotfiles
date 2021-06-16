@@ -1,8 +1,52 @@
+if &shell =~# 'fish$'
+    set shell=sh
+endif
+
 packadd minpac
 call minpac#init()
 
+" Liquid
+call minpac#add('tpope/vim-Liquid')
+
+" nextflow vim
+call minpac#add('LukeGoodsell/nextflow-vim')
+
+" vim-sneak
+call minpac#add('justinmk/vim-sneak')
+
+" emmet
+call minpac#add('mattn/emmet-vim')
+
+" syntax plugin for TOML
+call minpac#add('cespare/vim-toml')
+
+" temporarily highlit yanked text
+call minpac#add('machakann/vim-highlightedyank')
+highlight HighlightedyankRegion ctermbg=125
+
+" python function/class text object
+call minpac#add('jeetsukumaran/vim-pythonsense')
+
+" indent line
+call minpac#add('Yggdroot/indentLine')
+let g:indentLine_char = '⎸'
+let g:indentLine_enabled = 1
+let g:indentLine_color_term = 24
+
+" vim-fish
+call minpac#add('dag/vim-fish')
+
 " fugitive
 call minpac#add('tpope/vim-fugitive')
+highlight DiffChange ctermbg=60
+highlight DiffText ctermbg=53
+
+" unimpaired
+call minpac#add('tpope/vim-unimpaired')
+
+" vinegar
+call minpac#add('tpope/vim-vinegar')
+let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'
 
 " HTML
 call minpac#add('othree/html5.vim')
@@ -38,25 +82,33 @@ nnoremap <space> za
 
 " COC
 call minpac#add('neoclide/coc.nvim', {'branch': 'release'})
-set statusline^=%{coc#status()}
-
-" Use <TAB> to select the popup menu:
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 highlight Pmenu ctermbg=61 ctermfg=15 cterm=None
 highlight PmenuSel ctermfg=16 ctermbg=84 cterm=bold
+highlight Search ctermbg=153 ctermfg=black
 
 " tpope
 call minpac#add('tpope/vim-surround')
 call minpac#add('tpope/vim-repeat')
 
-" complete pairs (quotes, brackets, parentheses, etc.)
-call minpac#add('tmsvg/pear-tree')
-
 " Status line
 call minpac#add('liuchengxu/eleline.vim')
 set laststatus=2
+
+" Jinja2
+call minpac#add('lepture/vim-jinja')
+
+" EditorConfig
+call minpac#add('editorconfig/editorconfig-vim')
+
+" Jsonnet
+call minpac#add('google/vim-jsonnet')
+
+" Terraform
+call minpac#add('hashivim/vim-terraform')
+let g:terraform_align=1
+let g:terraform_fold_sections=1
+let g:terraform_fmt_on_save=1
 
 " minpac updates itself
 call minpac#add('ktakata/minpac', {'type': 'opt'})
@@ -80,11 +132,21 @@ set noswapfile
 set list
 " you can have unwritten changes in a file and open a new file
 set hidden
-" search highlighting on by default
-set hlsearch
+" search highlighting off by default
+set nohlsearch
 " turn on modeline
 set modeline
+" turn on line numbers
+set number
+highlight LineNr ctermfg=241
+" highlight cursorline
+set cursorline
+" interactive
+set inccommand=nosplit
+" insearch
+set incsearch
 
+set cmdheight=2
 
 " MAPPINGS
 "
@@ -101,8 +163,19 @@ nnoremap <leader>at :ALEToggle<CR>
 tnoremap <Esc> <C-\><C-n>
 tnoremap <C-v><Esc> <Esc>
 
-" FILETYPE SETTINGS
-"
+" Delete buffer
+nnoremap <leader>bd :bd<CR>
+
+" quit
+nnoremap qq :q<CR>
+
+"" FILETYPE SETTINGS
+""
+au BufNewFile,BufRead *.liquid
+    \ set tabstop=2 |
+    \ set shiftwidth=2 |
+    \ set expandtab
+
 au BufNewFile,BufRead *.py
     \ set softtabstop=4 |
     \ set shiftwidth=4 |
@@ -124,26 +197,69 @@ au BufNewFile,BufRead Dockerfile*
     \ set expandtab |
     \ set fileformat=unix
 
-au BufNewFile,BufRead *.js,*.json,*.yaml,*.yml
+au BufNewFile,BufRead *.js,*.json,*.yaml,*.yml,*.html,*.css,*.jsonnet
     \ set softtabstop=2 |
     \ set shiftwidth=2 |
-    \ set expandtab
+    \ set expandtab |
+    \ set conceallevel=0 |
+    \ set smartindent
 
+autocmd FileType fish compiler fish
+autocmd FileType setlocal textwidth=79
+autocmd FileType setlocal foldmethod=expr
 
 " This is to access ALE's docs
 packloadall
 silent! helptags ALL
 
-" COC settings
-" use <tab> for trigger completion and navigate to the next complete item
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~ '\s'
+" tab/space-tab to move up/down in completion list
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+" Use <c-space> to trigger completion.
+inoremap <silent><expr> <c-space> coc#refresh()
+
+" let CR trigger completion
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+" Highlight symbol under cursor on CursorHold
+highlight CocHighlightText ctermbg=239
+autocmd CursorHold * call CocActionAsync('highlight')
+
+" Highlight text color for linting errors
+highlight CocErrorSign ctermfg=220
+highlight CocWarningSign ctermfg=220
+
+" time to wait
+set updatetime=250
+
+" rename variable with <leader>rn
+nmap <leader>rn <Plug>(coc-rename)
+
+" keep the signcolumn visible
+set signcolumn=yes
+
+set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+
+" root patterns for python
+autocmd FileType python let b:coc_root_patterns = ['.git', 'Pipfile']
+
+" hide all float windows
+nmap <silent> <leader>h <Plug>(coc-float-hide)
+
+" show documentation 
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
 endfunction
 
-inoremap <silent><expr> <Tab>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<Tab>" :
-      \ coc#refresh()
-
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+" Create mappings for function text object, requires document symbols feature
+" of languageserver.
+xmap if <Plug>(coc-funcobj-i)
+xmap af <Plug>(coc-funcobj-a)
+omap if <Plug>(coc-funcobj-i)
+omap af <Plug>(coc-funcobj-a)
