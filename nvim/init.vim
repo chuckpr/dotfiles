@@ -220,7 +220,7 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <silent><expr> <c-space> coc#refresh()
 
 " let CR trigger completion
-inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 " Highlight symbol under cursor on CursorHold
 highlight CocHighlightText ctermbg=239
@@ -238,7 +238,6 @@ nmap <leader>rn <Plug>(coc-rename)
 
 " keep the signcolumn visible
 set signcolumn=yes
-
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
 " root patterns for python
