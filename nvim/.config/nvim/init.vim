@@ -14,6 +14,9 @@ call minpac#add('hrsh7th/cmp-nvim-lsp')
 call minpac#add('hrsh7th/cmp-buffer')
 call minpac#add('hrsh7th/cmp-path')
 
+" treesitter
+call minpac#add('nvim-treesitter/nvim-treesitter')
+
 " autopairs
 call minpac#add('windwp/nvim-autopairs')
 lua require('nvim-autopairs').setup{}
@@ -71,6 +74,7 @@ command! PacClean call minpac#clean()
 luafile ~/.config/nvim/lua/lsp/lsp-config.lua
 luafile ~/.config/nvim/lua/plugins/nvim-cmp-cfg.lua
 luafile ~/.config/nvim/lua/plugins/nvim-autopairs.lua
+luafile ~/.config/nvim/lua/plugins/nvim-treesitter-cfg.lua
 
 " SETTINGS
 "
