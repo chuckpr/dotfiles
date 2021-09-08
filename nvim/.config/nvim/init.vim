@@ -8,11 +8,16 @@ call minpac#init()
 " LSP
 call minpac#add('neovim/nvim-lspconfig')
 call minpac#add('hrsh7th/nvim-cmp')
-call minpac#add('hrsh7th/vim-vsnip')
 call minpac#add('hrsh7th/cmp-buffer')
 call minpac#add('hrsh7th/cmp-nvim-lsp')
 call minpac#add('hrsh7th/cmp-buffer')
 call minpac#add('hrsh7th/cmp-path')
+
+" snippets
+call minpac#add('hrsh7th/vim-vsnip')
+call minpac#add('hrsh7th/vim-vsnip-integ')
+imap <expr> <C-j>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-j>'
+smap <expr> <C-j>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-j>'
 
 " treesitter
 call minpac#add('nvim-treesitter/nvim-treesitter')
@@ -108,6 +113,8 @@ set incsearch
 
 set cmdheight=3
 
+set updatetime=1000
+
 " MAPPINGS
 "
 " source init.vim
@@ -132,14 +139,6 @@ au BufNewFile,BufRead *.liquid
     \ set tabstop=2 |
     \ set shiftwidth=2 |
     \ set expandtab
-
-au BufNewFile,BufRead *.py
-    \ set softtabstop=4 |
-    \ set shiftwidth=4 |
-    \ set textwidth=79 |
-    \ set expandtab |
-    \ set fileformat=unix
-autocmd BufWritePre *.py lua vim.lsp.buf.formatting_sync(nil, 1000)
 
 autocmd BufWritePre *.lua lua vim.lsp.buf.formatting_sync(nil, 1000)
 
@@ -168,14 +167,17 @@ autocmd FileType fish compiler fish
 autocmd FileType setlocal textwidth=79
 autocmd FileType setlocal foldmethod=expr
 
-highlight Pmenu ctermfg=254 ctermbg=19
-highlight PmenuSel ctermfg=235 ctermbg=194
+augroup cursorholds
+  autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
+  autocmd CursorHoldI <buffer> lua vim.lsp.buf.document_highlight()
+  autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
+augroup END
 
-autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
-autocmd CursorHoldI <buffer> lua vim.lsp.buf.document_highlight()
-autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
-
-set updatetime=1000
-highlight LspReferenceText ctermbg=79 ctermfg=17
-highlight LspReferenceRead ctermbg=79 ctermfg=17
-highlight LspReferenceWrite ctermbg=79 ctermfg=17
+augroup highlights
+  autocmd!
+  highlight Pmenu ctermfg=254 ctermbg=19
+  highlight PmenuSel ctermfg=235 ctermbg=194
+  highlight LspReferenceText ctermbg=79 ctermfg=17
+  highlight LspReferenceRead ctermbg=79 ctermfg=17
+  highlight LspReferenceWrite ctermbg=79 ctermfg=17
+augroup END
