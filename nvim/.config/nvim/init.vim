@@ -168,6 +168,7 @@ autocmd FileType setlocal textwidth=79
 autocmd FileType setlocal foldmethod=expr
 
 augroup cursorholds
+  autocmd!
   autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
   autocmd CursorHoldI <buffer> lua vim.lsp.buf.document_highlight()
   autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
