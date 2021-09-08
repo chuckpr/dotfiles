@@ -70,6 +70,7 @@ command! PacClean call minpac#clean()
 
 luafile ~/.config/nvim/lua/lsp/lsp-config.lua
 luafile ~/.config/nvim/lua/plugins/nvim-cmp-cfg.lua
+luafile ~/.config/nvim/lua/plugins/nvim-autopairs.lua
 
 " SETTINGS
 "
@@ -165,3 +166,12 @@ autocmd FileType setlocal foldmethod=expr
 
 highlight Pmenu ctermfg=254 ctermbg=19
 highlight PmenuSel ctermfg=235 ctermbg=194
+
+autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
+autocmd CursorHoldI <buffer> lua vim.lsp.buf.document_highlight()
+autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
+
+set updatetime=1000
+highlight LspReferenceText ctermbg=79 ctermfg=17
+highlight LspReferenceRead ctermbg=79 ctermfg=17
+highlight LspReferenceWrite ctermbg=79 ctermfg=17
