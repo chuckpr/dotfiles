@@ -49,6 +49,7 @@ local on_attach = function(client, bufnr)
 end
 
 nvim_lsp.jedi_language_server.setup {on_attach = on_attach}
+nvim_lsp.pyright.setup {on_attach = on_attach}
 
 nvim_lsp.vimls.setup {on_attach = on_attach}
 
@@ -104,3 +105,13 @@ require'lspconfig'.sumneko_lua.setup {
         }
     }
 }
+
+require'lspconfig'.dockerls.setup {on_attach = on_attach}
+
+require'lspconfig'.groovyls.setup {
+    on_attach = on_attach,
+    cmd = {"java", "-jar", os.getenv("GROOVY_LS_JARFILE")},
+    ...
+}
+
+require'lsp_signature'.setup {on_attach = on_attach}

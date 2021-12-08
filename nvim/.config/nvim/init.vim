@@ -5,6 +5,9 @@ endif
 packadd minpac
 call minpac#init()
 
+" symbols outline
+call minpac#add('simrat39/symbols-outline.nvim')
+
 " LSP
 call minpac#add('neovim/nvim-lspconfig')
 call minpac#add('hrsh7th/nvim-cmp')
@@ -12,6 +15,7 @@ call minpac#add('hrsh7th/cmp-buffer')
 call minpac#add('hrsh7th/cmp-nvim-lsp')
 call minpac#add('hrsh7th/cmp-buffer')
 call minpac#add('hrsh7th/cmp-path')
+call minpac#add('ray-x/lsp_signature.nvim')
 
 " snippets
 call minpac#add('hrsh7th/vim-vsnip')
@@ -102,7 +106,7 @@ set nohlsearch
 " turn on modeline
 set modeline
 " turn on line numbers
-set number
+set relativenumber
 highlight LineNr ctermfg=241
 " highlight cursorline
 set cursorline
@@ -132,6 +136,10 @@ nnoremap <leader>bd :bd<CR>
 
 " quit
 nnoremap qq :q<CR>
+
+" open a terminal in vsplit
+set splitright
+nnoremap <leader>term :vsplit<CR>:term fish<CR>
 
 "" FILETYPE SETTINGS
 ""
@@ -182,3 +190,24 @@ augroup highlights
   highlight LspReferenceRead ctermbg=79 ctermfg=17
   highlight LspReferenceWrite ctermbg=79 ctermfg=17
 augroup END
+
+lua << EOF
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+  vim.lsp.diagnostic.on_publish_diagnostics, {
+    -- This will disable virtual text, like doing:
+    -- let g:diagnostic_enable_virtual_text = 0
+    virtual_text = false,
+
+    -- This is similar to:
+    -- let g:diagnostic_show_sign = 1
+    -- To configure sign display,
+    --  see: ":help vim.lsp.diagnostic.set_signs()"
+    signs = true,
+
+    -- This is similar to:
+    -- "let g:diagnostic_insert_delay = 1"
+    update_in_insert = false,
+  }
+)
+EOF
+
