@@ -27,11 +27,11 @@ smap <expr> <C-j>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-j
 call minpac#add('nvim-treesitter/nvim-treesitter')
 
 " autopairs
-call minpac#add('windwp/nvim-autopairs')
-lua require('nvim-autopairs').setup{}
+" call minpac#add('windwp/nvim-autopairs')
+" lua require('nvim-autopairs').setup{}
 
 " Python autoindent
-call minpac#add('Vimjas/vim-python-pep8-indent')
+" call minpac#add('Vimjas/vim-python-pep8-indent')
 
 " nextflow vim
 call minpac#add('LukeGoodsell/nextflow-vim')
@@ -82,7 +82,7 @@ command! PacClean call minpac#clean()
 
 luafile ~/.config/nvim/lua/lsp/lsp-config.lua
 luafile ~/.config/nvim/lua/plugins/nvim-cmp-cfg.lua
-luafile ~/.config/nvim/lua/plugins/nvim-autopairs.lua
+" luafile ~/.config/nvim/lua/plugins/nvim-autopairs.lua
 luafile ~/.config/nvim/lua/plugins/nvim-treesitter-cfg.lua
 
 " SETTINGS
@@ -189,6 +189,7 @@ augroup highlights
   highlight LspReferenceText ctermbg=79 ctermfg=17
   highlight LspReferenceRead ctermbg=79 ctermfg=17
   highlight LspReferenceWrite ctermbg=79 ctermfg=17
+  highlight NormalFloat ctermbg=54 ctermfg=224
 augroup END
 
 lua << EOF
@@ -206,8 +207,7 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
 
     -- This is similar to:
     -- "let g:diagnostic_insert_delay = 1"
-    update_in_insert = false,
+    update_in_insert = true,
   }
 )
 EOF
-
