@@ -4,8 +4,6 @@ cmp.setup({
 
     snippet = {expand = function(args) vim.fn["vsnip#anonymous"](args.body) end},
 
-    -- completion = {autocomplete = true},
-
     sources = {{name = 'nvim_lsp'}, {name = 'path'}, {name = 'buffer'}},
 
     mapping = {
@@ -28,10 +26,5 @@ cmp.setup({
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
--- require'lspconfig'.jedi_language_server.setup {capabilities = capabilities}
-
--- require("nvim-autopairs.completion.cmp").setup({
---     map_cr = true, --  map <CR> on insert mode
---     map_complete = true, -- it will auto insert `(` after select function or method item
---     auto_select = true -- automatically select the first item
--- })
+local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+cmp.event:on( 'confirm_done', cmp_autopairs.on_confirm_done({  map_char = { tex = '' } }))

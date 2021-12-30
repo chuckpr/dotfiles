@@ -74,16 +74,12 @@ nvim_lsp.efm.setup {
     }
 }
 
-local sumneko_root_path = os.getenv('LUA_LANG_SERVER')
-local sumneko_binary = sumneko_root_path .. "/bin/macOS/lua-language-server"
-
 local runtime_path = vim.split(package.path, ';')
 table.insert(runtime_path, "lua/?.lua")
 table.insert(runtime_path, "lua/?/init.lua")
 
 require'lspconfig'.sumneko_lua.setup {
     on_attach = on_attach,
-    cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"},
     settings = {
         Lua = {
             runtime = {

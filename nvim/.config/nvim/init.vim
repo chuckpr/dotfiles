@@ -5,6 +5,30 @@ endif
 packadd minpac
 call minpac#init()
 
+" gitsigns
+call minpac#add('nvim-lua/plenary.nvim')
+call minpac#add('lewis6991/gitsigns.nvim')
+lua << EOF
+require('gitsigns').setup {
+    numhl = true,
+    word_diff= true
+}
+EOF
+
+" indent line for Neovim
+call minpac#add('lukas-reineke/indent-blankline.nvim')
+lua << EOF
+vim.opt.list = true
+vim.opt.listchars:append("space:⋅")
+vim.opt.listchars:append("eol:↴")
+
+require("indent_blankline").setup {
+    space_char_blankline = " ",
+    show_current_context = true,
+    show_current_context_start = true,
+}
+EOF
+
 " symbols outline
 call minpac#add('simrat39/symbols-outline.nvim')
 
@@ -27,24 +51,14 @@ smap <expr> <C-j>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-j
 call minpac#add('nvim-treesitter/nvim-treesitter')
 
 " autopairs
-" call minpac#add('windwp/nvim-autopairs')
-" lua require('nvim-autopairs').setup{}
+call minpac#add('windwp/nvim-autopairs')
+lua require('nvim-autopairs').setup{}
 
 " Python autoindent
 " call minpac#add('Vimjas/vim-python-pep8-indent')
 
 " nextflow vim
 call minpac#add('LukeGoodsell/nextflow-vim')
-
-" temporarily highlit yanked text
-call minpac#add('machakann/vim-highlightedyank')
-highlight HighlightedyankRegion ctermbg=125
-
-" indent line
-call minpac#add('Yggdroot/indentLine')
-let g:indentLine_char = '⎸'
-let g:indentLine_enabled = 1
-let g:indentLine_color_term = 24
 
 " vim-fish
 call minpac#add('dag/vim-fish')
@@ -82,7 +96,7 @@ command! PacClean call minpac#clean()
 
 luafile ~/.config/nvim/lua/lsp/lsp-config.lua
 luafile ~/.config/nvim/lua/plugins/nvim-cmp-cfg.lua
-" luafile ~/.config/nvim/lua/plugins/nvim-autopairs.lua
+luafile ~/.config/nvim/lua/plugins/nvim-autopairs.lua
 luafile ~/.config/nvim/lua/plugins/nvim-treesitter-cfg.lua
 
 " SETTINGS
@@ -118,6 +132,13 @@ set incsearch
 set cmdheight=3
 
 set updatetime=1000
+
+" Highlight yanked text
+augroup highlight_yank
+    autocmd!
+    au TextYankPost * silent! lua vim.highlight.on_yank{higroup="IncSearch", timeout=700}
+augroup EN
+
 
 " MAPPINGS
 "
