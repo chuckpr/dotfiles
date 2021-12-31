@@ -48,8 +48,19 @@ local on_attach = function(client, bufnr)
 
 end
 
-nvim_lsp.pyright.setup {on_attach = on_attach}
-nvim_lsp.pylsp.setup {on_attach = on_attach}
+-- nvim_lsp.pyright.setup {on_attach = on_attach}
+nvim_lsp.pylsp.setup {
+    cmd = {"pylsp", "-v"},
+    on_attach = on_attach,
+    filetypes = {"python"},
+    settings = {
+        pylsp = {
+            plugins = {
+                pyls_isort = {enabled = false}
+            }
+        }
+    }
+}
 
 nvim_lsp.vimls.setup {on_attach = on_attach}
 
