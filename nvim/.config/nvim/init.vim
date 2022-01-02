@@ -148,6 +148,9 @@ nnoremap <leader>so :so $MYVIMRC<CR>zv
 " edit init.vim
 nnoremap <leader>ev :e $MYVIMRC<CR>
 
+" edit lsp config
+nnoremap <leader>el :e ~/.config/nvim/lua/lsp/lsp-config.lua<CR>
+
 " Exit terminal mode
 tnoremap <Esc> <C-\><C-n>
 tnoremap <C-v><Esc> <Esc>
@@ -168,8 +171,6 @@ au BufNewFile,BufRead *.liquid
     \ set tabstop=2 |
     \ set shiftwidth=2 |
     \ set expandtab
-
-autocmd BufWritePre *.lua lua vim.lsp.buf.formatting_sync(nil, 1000)
 
 au BufNewFile,BufRead *.sh
     \ set softtabstop=2 |
@@ -211,6 +212,7 @@ augroup highlights
   highlight LspReferenceRead ctermbg=79 ctermfg=17
   highlight LspReferenceWrite ctermbg=79 ctermfg=17
   highlight NormalFloat ctermbg=54 ctermfg=224
+  highlight GitSignsAddLn ctermfg=213
 augroup END
 
 lua << EOF
