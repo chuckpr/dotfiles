@@ -30,7 +30,7 @@ require("indent_blankline").setup {
 EOF
 
 " symbols outline
-call minpac#add('simrat39/symbols-outline.nvim')
+" call minpac#add('simrat39/symbols-outline.nvim')
 
 " LSP
 call minpac#add('neovim/nvim-lspconfig')
@@ -213,6 +213,10 @@ augroup highlights
   highlight LspReferenceWrite ctermbg=79 ctermfg=17
   highlight NormalFloat ctermbg=54 ctermfg=224
   highlight GitSignsAddLn ctermfg=213
+  highlight GitSignsAddNr ctermbg=17
+  highlight IndentBlanklineSpaceChar ctermfg=239 cterm=nocombine
+  highlight NonText ctermfg=239 cterm=nocombine
+  highlight IndentBlanklineContextChar ctermfg=57 cterm=nocombine
 augroup END
 
 lua << EOF

@@ -34,13 +34,10 @@ local on_attach = function(client, bufnr)
     buf_set_keymap('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
     buf_set_keymap('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>',
                    opts)
-    buf_set_keymap('n', '<leader>e',
-                   '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>',
+    buf_set_keymap('n', '<leader>e', '<cmd>lua vim.diagnostic.open_float()<CR>',
                    opts)
-    buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>',
-                   opts)
-    buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>',
-                   opts)
+    buf_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
+    buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
     buf_set_keymap('n', '<leader>q',
                    '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
     buf_set_keymap('n', '<leader>f',
@@ -57,7 +54,7 @@ nvim_lsp.bashls.setup {on_attach = on_attach}
 nvim_lsp.efm.setup {
     on_attach = on_attach,
     init_options = {documentFormatting = true},
-    filetypes = {'python', 'lua'},
+    filetypes = {'python', 'lua', 'sh'},
     settings = {
         rootMarkers = {".git/"},
         languages = {
@@ -66,9 +63,20 @@ nvim_lsp.efm.setup {
                 {
                     formatCommand = "isort --float-to-top --quiet -",
                     formatStdin = true
+                }, {
+                    lintCommand = 'flake8 --ignore E501 -',
+                    lintStdin = true,
+                    lintFormats = {'%f:%l:%c: %m'}
                 }
             },
-            lua = {{formatCommand = "lua-format -i", formatStdin = true}}
+            lua = {{formatCommand = "lua-format -i", formatStdin = true}},
+            sh = {
+                {formatCommand = "shfmt -i 2 -ci -s -bn", formatStdin = true},
+                {
+                    lintCommand = 'shellcheck -f gcc -x',
+                    lintSource = 'shellcheck'
+                }
+            }
         }
     }
 }
@@ -113,5 +121,6 @@ require'lsp_signature'.setup {
     on_attach = on_attach,
     transparency = 100,
     toggle_key = '<C-x>'
-
 }
+
+nvim_lsp.bashls.setup {on_attach = on_attach}
