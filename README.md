@@ -2,7 +2,7 @@
 
 ## set up
 
-To set up [Neoviom](https://neovim.io/):
+To set up [Neovim](https://neovim.io/):
 ```bash
 cd ~
 gh repo clone chuckpr/dotfiles && cd dotfiles
