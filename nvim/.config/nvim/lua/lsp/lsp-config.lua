@@ -85,7 +85,7 @@ local runtime_path = vim.split(package.path, ';')
 table.insert(runtime_path, "lua/?.lua")
 table.insert(runtime_path, "lua/?/init.lua")
 
-require'lspconfig'.sumneko_lua.setup {
+nvim_lsp.sumneko_lua.setup {
     on_attach = on_attach,
     settings = {
         Lua = {
@@ -109,12 +109,11 @@ require'lspconfig'.sumneko_lua.setup {
     }
 }
 
-require'lspconfig'.dockerls.setup {on_attach = on_attach}
+nvim_lsp.dockerls.setup {on_attach = on_attach}
 
-require'lspconfig'.groovyls.setup {
+nvim_lsp.groovyls.setup {
     on_attach = on_attach,
-    cmd = {"java", "-jar", os.getenv("GROOVY_LS_JARFILE")},
-    ...
+    cmd = {"java", "-jar", os.getenv("GROOVY_LS_JARFILE")}
 }
 
 require'lsp_signature'.setup {
