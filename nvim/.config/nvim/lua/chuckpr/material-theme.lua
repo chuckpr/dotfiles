@@ -1,4 +1,5 @@
-vim.g.material_style = "darker"
+vim.g.material_style = "deep ocean"
+local colors = require('material.colors')
 
 require('material').setup({
 
@@ -38,5 +39,8 @@ require('material').setup({
         eob_lines = false -- Hide the end-of-buffer lines
     },
 
-    custom_highlights = {} -- Overwrite highlights with your own
+    custom_highlights = {
+        TSStringEscape = {fg = colors.blue},
+        LineNr = colors.fg
+    } -- Overwrite highlights with your own
 })

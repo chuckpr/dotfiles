@@ -1,4 +1,6 @@
 colorscheme material
+set list
+set listchars=eol:↴
 set signcolumn=yes
 set hidden
 set autoindent

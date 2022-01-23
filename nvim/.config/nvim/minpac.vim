@@ -1,6 +1,18 @@
 packadd minpac
 call minpac#init()
 
+" lualine
+call minpac#add('nvim-lualine/lualine.nvim')
+
+" tabnine source
+call minpac#add('tzachar/cmp-tabnine', {'do': '!./install.sh'})
+
+" toggleterm
+call minpac#add('akinsho/toggleterm.nvim')
+
+" lspkind
+call minpac#add('onsails/lspkind-nvim')
+
 " Telescoper 
 call minpac#add('nvim-lua/plenary.nvim')
 call minpac#add('nvim-telescope/telescope.nvim')
@@ -18,6 +30,7 @@ require("indent_blankline").setup {
     space_char_blankline = " ",
     show_current_context = true,
     show_current_context_start = true,
+    show_end_of_line = true,
 }
 EOF
 
@@ -41,10 +54,16 @@ smap <expr> <C-j>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-j
 
 " treesitter
 call minpac#add('nvim-treesitter/nvim-treesitter')
+call minpac#add('nvim-treesitter/playground')
+call minpac#add('nvim-treesitter/nvim-treesitter-textobjects')
 
 " autopairs
 call minpac#add('windwp/nvim-autopairs')
-lua require('nvim-autopairs').setup{}
+lua << EOF
+require('nvim-autopairs').setup{
+	ignored_next_char = string.gsub([[ [%w%%%'%[%"%.] ]],"%s+", "")
+}
+EOF
 
 " Python autoindent
 " call minpac#add('Vimjas/vim-python-pep8-indent')
@@ -56,12 +75,9 @@ call minpac#add('LukeGoodsell/nextflow-vim')
 call minpac#add('dag/vim-fish')
 
 " fzf
-call minpac#add('junegunn/fzf')
-nnoremap <C-p> :<C-u>FZF<CR>
-call minpac#add('junegunn/fzf.vim')
-
-" toggle fold with spacebar
-nnoremap <space> za
+" call minpac#add('junegunn/fzf')
+" nnoremap <C-p> :<C-u>FZF<CR>
+" call minpac#add('junegunn/fzf.vim')
 
 " tpope
 call minpac#add('tpope/vim-surround')
@@ -92,4 +108,3 @@ EOF
 
 command! PacUpdate call minpac#update()
 command! PacClean call minpac#clean()
-

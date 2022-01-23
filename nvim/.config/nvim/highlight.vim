@@ -24,3 +24,5 @@
 " highlight CursorLineNR guifg=Cyan
 "
 " highlight Visual guibg=#353847
+"
+" highlight pythonEscape gui=NONE guifg=White guibg=White cterm=NONE ctermfg=White ctermbg=White
