@@ -1,6 +1,9 @@
 packadd minpac
 call minpac#init()
 
+" Better python indent
+call minpac#add('Vimjas/vim-python-pep8-indent')
+
 " lualine
 call minpac#add('nvim-lualine/lualine.nvim')
 
