@@ -53,11 +53,6 @@ call minpac#add('nvim-treesitter/nvim-treesitter-textobjects')
 
 " autopairs
 call minpac#add('windwp/nvim-autopairs')
-lua << EOF
-require('nvim-autopairs').setup{
-	ignored_next_char = string.gsub([[ [%w%%%'%[%"%.] ]],"%s+", "")
-}
-EOF
 
 " nextflow vim
 call minpac#add('LukeGoodsell/nextflow-vim')
