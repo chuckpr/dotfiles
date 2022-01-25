@@ -1,6 +1,10 @@
 packadd minpac
 call minpac#init()
 
+" neoscroll
+call minpac#add('karb94/neoscroll.nvim')
+lua require('neoscroll').setup()
+
 " Better python indent
 call minpac#add('Vimjas/vim-python-pep8-indent')
 
