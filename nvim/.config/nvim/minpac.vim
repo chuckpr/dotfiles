@@ -48,8 +48,6 @@ call minpac#add('ray-x/lsp_signature.nvim')
 " snippets
 call minpac#add('hrsh7th/vim-vsnip')
 call minpac#add('hrsh7th/vim-vsnip-integ')
-imap <expr> <C-j>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-j>'
-smap <expr> <C-j>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-j>'
 
 " treesitter
 call minpac#add('nvim-treesitter/nvim-treesitter')
