@@ -1,6 +1,6 @@
 local npairs = require("nvim-autopairs")
 local Rule = require('nvim-autopairs.rule')
-local ts_conds = require('nvim-autopairs.ts-conds')
+-- local ts_conds = require('nvim-autopairs.ts-conds')
 local conds = require('nvim-autopairs.conds')
 
 -- This 👇 allows nested auto-pairing in f-strings
@@ -12,7 +12,6 @@ npairs.setup({
 })
 
 npairs.add_rules({
-    Rule("'''", "'''", "python"):with_pair(
-        ts_conds.is_not_ts_node({'string', 'comment'})),
+    Rule("'''", "'''", "python"):with_pair(conds.not_inside_quote()),
     Rule("'", "'", "python"):with_pair(conds.before_text('f'))
 })
