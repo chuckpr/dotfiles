@@ -33,9 +33,6 @@ call minpac#add('lewis6991/gitsigns.nvim')
 " indent line for Neovim
 call minpac#add('lukas-reineke/indent-blankline.nvim')
 
-" symbols outline
-" call minpac#add('simrat39/symbols-outline.nvim')
-
 " LSP
 call minpac#add('neovim/nvim-lspconfig')
 call minpac#add('hrsh7th/nvim-cmp')
@@ -62,19 +59,11 @@ require('nvim-autopairs').setup{
 }
 EOF
 
-" Python autoindent
-" call minpac#add('Vimjas/vim-python-pep8-indent')
-
 " nextflow vim
 call minpac#add('LukeGoodsell/nextflow-vim')
 
 " vim-fish
 call minpac#add('dag/vim-fish')
-
-" fzf
-" call minpac#add('junegunn/fzf')
-" nnoremap <C-p> :<C-u>FZF<CR>
-" call minpac#add('junegunn/fzf.vim')
 
 " tpope
 call minpac#add('tpope/vim-surround')
