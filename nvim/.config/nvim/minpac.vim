@@ -32,14 +32,6 @@ call minpac#add('lewis6991/gitsigns.nvim')
 
 " indent line for Neovim
 call minpac#add('lukas-reineke/indent-blankline.nvim')
-lua << EOF
-require("indent_blankline").setup {
-    space_char_blankline = " ",
-    show_current_context = true,
-    show_current_context_start = true,
-    show_end_of_line = true,
-}
-EOF
 
 " symbols outline
 " call minpac#add('simrat39/symbols-outline.nvim')
