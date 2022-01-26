@@ -3,6 +3,7 @@ if &shell =~# 'fish$'
 endif
 
 source ~/.config/nvim/minpac.vim
+source ~/.config/nvim/highlight.vim
 
 luafile ~/.config/nvim/lua/lsp/lsp-config.lua
 luafile ~/.config/nvim/lua/plugins/nvim-cmp-cfg.lua
@@ -18,4 +19,3 @@ luafile ~/.config/nvim/lua/chuckpr/diagnostic.cfg.lua
 source ~/.config/nvim/mappings.vim
 source ~/.config/nvim/autocommands.vim
 source ~/.config/nvim/settings.vim
-source ~/.config/nvim/highlight.vim
