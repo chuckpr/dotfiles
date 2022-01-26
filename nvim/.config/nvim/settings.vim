@@ -16,6 +16,6 @@ set number
 set cursorline
 set inccommand=nosplit
 set incsearch
-set cmdheight=3
+set cmdheight=2
 set updatetime=1000
 set splitright
