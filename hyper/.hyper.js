@@ -4,14 +4,18 @@
 
 module.exports = {
   config: {
-	  materialBox: {
+    materialBox: {
       scheme: 'dracula',
-		  selectedTabFlavor: 'filled'
+      selectedTabFlavor: 'filled'
     },
     hyperBorder: {
-      animate: true
+      animate: true,
+      borderColors: ['random', 'random', 'random', 'random'],
+      borderWidth: '4px',
+      borderRadiusInner: '5px',
+      borderRadiusOuter: '5px'
     },
-    shell: "/opt/homebrew/bin/fish",
+    shell: "/usr/local/bin/fish",
     // choose either `'stable'` for receiving highly polished,
     // or `'canary'` for less polished but more frequent updates
     updateChannel: 'stable',
