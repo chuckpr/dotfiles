@@ -1,4 +1,4 @@
-vim.g.material_style = "deep ocean"
+vim.g.material_style = "palenight"
 local colors = require('material.colors')
 
 require('material').setup({

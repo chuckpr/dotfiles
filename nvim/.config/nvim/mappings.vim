@@ -20,3 +20,5 @@ nnoremap <leader>fh <cmd>Telescope help_tags<CR>
 " vsnip mappings
 inoremap <expr> <C-j>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-j>'
 snoremap <expr> <C-j>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-j>'
+
+tnoremap <esc> <c-\><c-n> 
