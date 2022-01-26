@@ -1,6 +1,9 @@
 packadd minpac
 call minpac#init()
 
+" tmuux session picker
+call minpac#add('camgraff/telescope-tmux.nvim')
+
 " neoscroll
 call minpac#add('karb94/neoscroll.nvim')
 lua require('neoscroll').setup()

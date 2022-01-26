@@ -22,3 +22,5 @@ inoremap <expr> <C-j>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '
 snoremap <expr> <C-j>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-j>'
 
 tnoremap <esc> <c-\><c-n> 
+
+nnoremap <c-w> :Telescope tmux sessions<CR>
