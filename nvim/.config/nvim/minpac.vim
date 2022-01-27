@@ -43,6 +43,7 @@ call minpac#add('hrsh7th/cmp-buffer')
 call minpac#add('hrsh7th/cmp-nvim-lsp')
 call minpac#add('hrsh7th/cmp-buffer')
 call minpac#add('hrsh7th/cmp-path')
+call minpac#add('hrsh7th/cmp-cmdline')
 call minpac#add('ray-x/lsp_signature.nvim')
 
 " snippets

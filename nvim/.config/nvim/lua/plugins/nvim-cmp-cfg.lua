@@ -35,12 +35,21 @@ cmp.setup({
                 buffer = '[buffer]',
                 nvim_lsp = '[LSP]',
                 path = '[path]',
-                cmp_tabnine = '[TabNine]'
+                cmp_tabnine = '[TabNine]',
+                cmdline = '[cmd]'
             }
         })
     }
 
 })
+
+-- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
+-- search
+cmp.setup.cmdline('/', {sources = {{name = 'buffer'}}})
+
+-- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
+-- command  mode
+cmp.setup.cmdline(':', {sources = {{name = 'cmdline', keyword_length = 2}}})
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
