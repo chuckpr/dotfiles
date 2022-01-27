@@ -28,7 +28,7 @@ require("toggleterm").setup {
         -- not natively supported but implemented in this plugin.
         border = 'curved',
         width = 140,
-        height = 32,
+        height = 29,
         winblend = 3,
         highlights = {border = "ToggleTermBorder", background = "Normal"}
     }
