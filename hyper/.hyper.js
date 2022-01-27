@@ -4,10 +4,7 @@
 
 module.exports = {
   config: {
-    materialBox: {
-      scheme: 'dracula',
-      selectedTabFlavor: 'filled'
-    },
+    theme: {variant: 'moon'},
     hyperBorder: {
       animate: true,
       borderColors: ['random', 'random', 'random', 'random'],
@@ -160,8 +157,8 @@ module.exports = {
   plugins: [
     "hyperterm-summon",
     "hyperborder",
-    "hyper-material-box",
-    "hyper-font-ligatures"
+    "hyper-font-ligatures",
+    "hyper-rose-pine"
   ],
 
   // in development, you can create a directory under
