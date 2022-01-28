@@ -16,7 +16,7 @@ cmp.setup({
         ['<S-Tab>'] = cmp.mapping(cmp.mapping.select_prev_item(), {'i', 's'}),
         ['<CR>'] = cmp.mapping.confirm({
             behavior = cmp.ConfirmBehavior.Replace,
-            select = true
+            select = false
         }),
         ['<C-Space>'] = cmp.mapping.complete(),
         ['<C-e>'] = cmp.mapping(cmp.mapping.abort(), {'i', 's'}),
@@ -49,7 +49,12 @@ cmp.setup.cmdline('/', {sources = {{name = 'buffer'}}})
 
 -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
 -- command  mode
-cmp.setup.cmdline(':', {sources = {{name = 'cmdline', keyword_length = 2}}})
+cmp.setup.cmdline(':', {
+    sources = {
+        {name = 'path', keyword_length = 2},
+        {name = 'cmdline', keyword_length = 2}
+    }
+})
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
