@@ -49,6 +49,7 @@ let g:vsnip_filetypes.javascriptreact = ['javascript']
 let g:vsnip_filetypes.typescriptreact = ['typescript']
 
 nnoremap <leader>gp :G push<CR>
+nnoremap <leader>gg :G<CR>
 
 nnoremap <leader>nt :NvimTreeToggle<CR>
 nnoremap <leader>nf :NvimTreeFindFile<CR>
