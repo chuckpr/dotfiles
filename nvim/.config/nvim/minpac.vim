@@ -1,6 +1,9 @@
 packadd minpac
 call minpac#init()
 
+" nvim-tree
+call minpac#add('kyazdani42/nvim-tree.lua')
+
 " tmuux session picker
 call minpac#add('camgraff/telescope-tmux.nvim')
 

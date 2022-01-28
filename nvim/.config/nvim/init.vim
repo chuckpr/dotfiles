@@ -15,6 +15,7 @@ luafile ~/.config/nvim/lua/chuckpr/toggleterm.lua
 luafile ~/.config/nvim/lua/chuckpr/lualine.lua
 luafile ~/.config/nvim/lua/chuckpr/indent-blankline.lua
 luafile ~/.config/nvim/lua/chuckpr/diagnostic.cfg.lua
+luafile ~/.config/nvim/lua/chuckpr/nvim-tree.lua
 
 source ~/.config/nvim/mappings.vim
 source ~/.config/nvim/autocommands.vim
