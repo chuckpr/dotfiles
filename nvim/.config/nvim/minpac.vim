@@ -74,8 +74,6 @@ call minpac#add('tpope/vim-repeat')
 call minpac#add('tpope/vim-fugitive')
 " unimpaired
 call minpac#add('tpope/vim-unimpaired')
-" vinegar
-call minpac#add('tpope/vim-vinegar')
 " Commentary
 call minpac#add('tpope/vim-commentary')
 
