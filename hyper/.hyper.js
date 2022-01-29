@@ -5,8 +5,13 @@
 module.exports = {
   config: {
     materialBox: {
-      // scheme: 'monokai',
-      scheme: 'gruvbox-dark-hard',
+      scheme: 'monokai',
+      // scheme: 'gruvbox-dark-hard',
+      lightEffect: true,
+      autoHideTitle: true,
+      highlightSelectedTab: true,
+      closeOnTheLeft: true,
+      hideTrafficLights: true,
       user: {
         accentColor: 'steelblue',
         cursorColor: 'rgba(248,28,229,0.7)',
