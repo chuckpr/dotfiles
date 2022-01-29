@@ -44,6 +44,8 @@ require('material').setup({
         LineNr = colors.fg,
         TelescopePromptBorder = {bg = colors.float, fg = colors.darkcyan},
         TelescopeResultsBorder = {bg = colors.float, fg = colors.darkpurple},
-        TelescopePreviewBorder = {bg = colors.float, fg = colors.darkblue}
+        TelescopePreviewBorder = {bg = colors.float, fg = colors.darkblue},
+        NormalFloat = {bg = colors.bg_alt},
+        FloatBorder = {bg = colors.bg_alt, fg = colors.red}
     } -- Overwrite highlights with your own
 })

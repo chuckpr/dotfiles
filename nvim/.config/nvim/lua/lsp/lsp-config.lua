@@ -1,5 +1,13 @@
 local nvim_lsp = require("lspconfig")
 
+local handlers = {
+    ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover,
+                                          {border = 'rounded'}),
+    ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers
+                                                      .signature_help,
+                                                  {border = 'rounded'})
+}
+
 local on_attach = function(client, bufnr)
     local function buf_set_keymap(...)
         vim.api.nvim_buf_set_keymap(bufnr, ...)
@@ -45,11 +53,11 @@ local on_attach = function(client, bufnr)
 
 end
 
-nvim_lsp.jedi_language_server.setup {on_attach = on_attach}
+nvim_lsp.jedi_language_server.setup {on_attach = on_attach, handlers = handlers}
 
-nvim_lsp.vimls.setup {on_attach = on_attach}
+nvim_lsp.vimls.setup {on_attach = on_attach, handlers = handlers}
 
-nvim_lsp.bashls.setup {on_attach = on_attach}
+nvim_lsp.bashls.setup {on_attach = on_attach, handlers = handlers}
 
 nvim_lsp.efm.setup {
     on_attach = on_attach,
@@ -78,7 +86,8 @@ nvim_lsp.efm.setup {
                 }
             }
         }
-    }
+    },
+    handlers = handlers
 }
 
 local runtime_path = vim.split(package.path, ';')
@@ -106,20 +115,23 @@ nvim_lsp.sumneko_lua.setup {
             -- Do not send telemetry data containing a randomized but unique identifier
             telemetry = {enable = false}
         }
-    }
+    },
+    handlers = handlers
 }
 
 nvim_lsp.dockerls.setup {on_attach = on_attach}
 
 nvim_lsp.groovyls.setup {
     on_attach = on_attach,
-    cmd = {"java", "-jar", os.getenv("GROOVY_LS_JARFILE")}
+    cmd = {"java", "-jar", os.getenv("GROOVY_LS_JARFILE")},
+    handlers = handlers
 }
 
 require'lsp_signature'.setup {
     on_attach = on_attach,
     transparency = 100,
-    toggle_key = '<C-x>'
+    toggle_key = '<C-x>',
+    handlers = handlers
 }
 
-nvim_lsp.bashls.setup {on_attach = on_attach}
+nvim_lsp.bashls.setup {on_attach = on_attach, handlers = handlers}
