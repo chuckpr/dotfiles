@@ -1,6 +1,7 @@
 require'nvim-treesitter.configs'.setup {
     highlight = {enable = true, additional_vim_regex_highlighting = true},
     indent = {enable = true, disable = {"python"}},
+    autopairs = {enable = true},
     playground = {
         enable = true,
         updatetime = 25, -- Debounced time for highlighting nodes in the playground from source code
