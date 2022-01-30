@@ -2,7 +2,7 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] =
     vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
         -- This will disable virtual text, like doing:
         -- let g:diagnostic_enable_virtual_text = 0
-        virtual_text = true,
+        virtual_text = {spacing = 10},
 
         -- This is similar to:
         -- let g:diagnostic_show_sign = 1
