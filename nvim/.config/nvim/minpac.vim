@@ -75,8 +75,6 @@ call minpac#add('tpope/vim-surround')
 call minpac#add('tpope/vim-repeat')
 " fugitive
 call minpac#add('tpope/vim-fugitive')
-" unimpaired
-call minpac#add('tpope/vim-unimpaired')
 " Commentary
 call minpac#add('tpope/vim-commentary')
 
