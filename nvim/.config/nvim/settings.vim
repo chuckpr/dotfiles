@@ -20,3 +20,4 @@ set cmdheight=2
 set updatetime=1000
 set splitright
 set termguicolors
+set timeoutlen=750
