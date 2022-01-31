@@ -1,6 +1,9 @@
 packadd minpac
 call minpac#init()
 
+" which-key
+call minpac#add('folke/which-key.nvim')
+
 " nvim-tree
 call minpac#add('kyazdani42/nvim-tree.lua')
 
