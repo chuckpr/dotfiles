@@ -16,7 +16,7 @@ set number
 set cursorline
 set inccommand=nosplit
 set incsearch
-set cmdheight=2
+set cmdheight=1
 set updatetime=1000
 set splitright
 set termguicolors
