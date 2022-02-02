@@ -53,3 +53,5 @@ nnoremap <leader>gg :G<CR>
 
 nnoremap <leader>nt :NvimTreeToggle<CR>
 nnoremap <leader>nf :NvimTreeFindFile<CR>
+
+nnoremap <space> za

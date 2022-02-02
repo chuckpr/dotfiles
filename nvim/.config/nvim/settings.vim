@@ -21,3 +21,7 @@ set updatetime=1000
 set splitright
 set termguicolors
 set timeoutlen=750
+
+set foldlevel=0
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
