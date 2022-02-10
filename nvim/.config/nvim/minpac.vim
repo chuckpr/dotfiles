@@ -1,6 +1,9 @@
 packadd minpac
 call minpac#init()
 
+" neoclip
+call minpac#add('AckslD/nvim-neoclip.lua')
+
 " which-key
 call minpac#add('folke/which-key.nvim')
 

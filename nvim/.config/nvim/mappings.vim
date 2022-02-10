@@ -17,6 +17,7 @@ nnoremap <leader>fg :Telescope live_grep<CR>
 nnoremap <leader>fb :Telescope buffers<CR>
 nnoremap <leader>fh :Telescope help_tags<CR>
 nnoremap <leader>fs :Telescope tmux sessions<CR>
+nnoremap <leader>fc :Telescope neoclip<CR>
 
 tnoremap <esc> <c-\><c-n> 
 
