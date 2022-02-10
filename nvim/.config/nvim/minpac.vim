@@ -56,8 +56,8 @@ call minpac#add('hrsh7th/cmp-cmdline')
 call minpac#add('ray-x/lsp_signature.nvim')
 
 " snippets
-call minpac#add('hrsh7th/vim-vsnip')
-call minpac#add('hrsh7th/vim-vsnip-integ')
+call minpac#add('L3MON4D3/LuaSnip')
+call minpac#add('saadparwaiz1/cmp_luasnip')
 
 " treesitter
 call minpac#add('nvim-treesitter/nvim-treesitter')
