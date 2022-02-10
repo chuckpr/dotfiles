@@ -24,3 +24,5 @@ set timeoutlen=750
 set foldlevel=4
 set foldmethod=expr
 set foldexpr=nvim_treesitter#foldexpr()
+
+let g:dashboard_default_executive = 'telescope'

@@ -1,6 +1,9 @@
 packadd minpac
 call minpac#init()
 
+" dashboard-nvim
+call minpac#add('glepnir/dashboard-nvim')
+
 " neoclip
 call minpac#add('AckslD/nvim-neoclip.lua')
 
