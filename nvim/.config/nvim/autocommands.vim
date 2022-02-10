@@ -11,3 +11,10 @@ augroup cursorholds
   autocmd CursorHoldI <buffer> lua vim.lsp.buf.document_highlight()
   autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
 augroup END
+
+" Turn off diagnostic when typing
+augroup Diagnostic
+  autocmd!
+  au InsertEnter * :lua vim.diagnostic.disable()
+  au InsertLeave * :lua vim.diagnostic.enable()
+augroup END

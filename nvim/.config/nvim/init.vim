@@ -24,10 +24,3 @@ luafile ~/.config/nvim/lua/chuckpr/luasnip.lua
 source ~/.config/nvim/mappings.vim
 source ~/.config/nvim/autocommands.vim
 source ~/.config/nvim/settings.vim
-
-augroup Diagnostic
-  autocmd!
-  " test
-  au InsertEnter * :lua vim.diagnostic.disable()
-  au InsertLeave * :lua vim.diagnostic.enable()
-augroup END
