@@ -26,3 +26,4 @@ set foldmethod=expr
 set foldexpr=nvim_treesitter#foldexpr()
 
 let g:dashboard_default_executive = 'telescope'
+let g:indentLine_fileTypeExclude = ['dashboard']

@@ -4,6 +4,9 @@ endif
 
 source ~/.config/nvim/minpac.vim
 source ~/.config/nvim/highlight.vim
+source ~/.config/nvim/settings.vim
+source ~/.config/nvim/mappings.vim
+source ~/.config/nvim/autocommands.vim
 
 luafile ~/.config/nvim/lua/lsp/lsp-config.lua
 luafile ~/.config/nvim/lua/plugins/nvim-cmp-cfg.lua
@@ -20,7 +23,3 @@ luafile ~/.config/nvim/lua/chuckpr/which-key.lua
 luafile ~/.config/nvim/lua/chuckpr/neoclip.lua
 luafile ~/.config/nvim/lua/chuckpr/telescope.lua
 luafile ~/.config/nvim/lua/chuckpr/luasnip.lua
-
-source ~/.config/nvim/mappings.vim
-source ~/.config/nvim/autocommands.vim
-source ~/.config/nvim/settings.vim
