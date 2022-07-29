@@ -91,9 +91,13 @@ call minpac#add('ktakata/minpac', {'type': 'opt'})
 call minpac#add('kyazdani42/nvim-web-devicons')
 call minpac#add('folke/trouble.nvim')
 
+" Notify
+call minpac#add('rcarriga/nvim-notify')
+
 lua << EOF
   require("trouble").setup {
   }
+  vim.notify = require("notify")
 EOF
 
 command! PacUpdate call minpac#update()

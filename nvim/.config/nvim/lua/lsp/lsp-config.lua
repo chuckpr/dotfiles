@@ -54,6 +54,7 @@ local on_attach = function(client, bufnr)
 end
 
 nvim_lsp.jedi_language_server.setup {on_attach = on_attach, handlers = handlers}
+-- nvim_lsp.pyright.setup {on_attach = on_attach, handlers = handlers}
 
 nvim_lsp.vimls.setup {on_attach = on_attach, handlers = handlers}
 

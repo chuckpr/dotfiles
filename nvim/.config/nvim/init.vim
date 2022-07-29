@@ -4,6 +4,7 @@ endif
 
 source ~/.config/nvim/minpac.vim
 
+luafile ~/.config/nvim/lua/chuckpr/nvim-notify.lua
 luafile ~/.config/nvim/lua/chuckpr/material-theme.lua
 luafile ~/.config/nvim/lua/lsp/lsp-config.lua
 luafile ~/.config/nvim/lua/plugins/nvim-cmp-cfg.lua
