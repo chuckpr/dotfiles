@@ -57,11 +57,10 @@ nvim_lsp.jedi_language_server.setup {on_attach = on_attach, handlers = handlers}
 
 nvim_lsp.vimls.setup {on_attach = on_attach, handlers = handlers}
 
-nvim_lsp.bashls.setup {on_attach = on_attach, handlers = handlers}
-
 nvim_lsp.efm.setup {
     on_attach = on_attach,
     init_options = {documentFormatting = true},
+    -- filetypes = {'python', 'lua', 'sh'},
     filetypes = {'python', 'lua', 'sh'},
     settings = {
         rootMarkers = {".git/"},
@@ -135,3 +134,4 @@ require'lsp_signature'.setup {
 }
 
 nvim_lsp.bashls.setup {on_attach = on_attach, handlers = handlers}
+-- nvim_lsp.bashls.setup {on_attach = on_attach}

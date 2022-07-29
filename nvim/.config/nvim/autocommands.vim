@@ -18,3 +18,7 @@ augroup Diagnostic
   au InsertEnter * :lua vim.diagnostic.disable()
   au InsertLeave * :lua vim.diagnostic.enable()
 augroup END
+
+augroup Nginx
+  autocmd BufRead,BufNewFile *.conf setfiletype conf
+augroup END

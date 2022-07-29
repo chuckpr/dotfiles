@@ -63,7 +63,7 @@ require('material').setup({
 
     custom_highlights = {
         TSStringEscape = {fg = colors.blue},
-        LineNr = colors.fg,
+        LineNr = {fg = colors.fg},
         TelescopePromptBorder = {bg = colors.float, fg = colors.darkcyan},
         TelescopeResultsBorder = {bg = colors.float, fg = colors.darkpurple},
         TelescopePreviewBorder = {bg = colors.float, fg = colors.darkblue},

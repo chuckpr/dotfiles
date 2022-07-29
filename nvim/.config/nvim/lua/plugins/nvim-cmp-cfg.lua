@@ -1,6 +1,6 @@
 local cmp = require 'cmp'
 local lspkind = require('lspkind')
-local luasnip = require("luasnip")
+local luasnip = require('luasnip')
 lspkind.init()
 
 local has_words_before = function()
@@ -13,7 +13,6 @@ end
 
 cmp.setup({
 
-    -- snippet = {expand = function(args) vim.fn["vsnip#anonymous"](args.body) end},
     snippet = {
         expand = function(args) require('luasnip').lsp_expand(args.body) end
     },
@@ -23,7 +22,15 @@ cmp.setup({
         {name = 'path'}, {name = 'cmp_tabnine'}
     },
 
-    mapping = {
+    mapping = cmp.mapping.preset.insert({
+        ['<CR>'] = cmp.mapping.confirm({
+            behavior = cmp.ConfirmBehavior.Replace,
+            select = false
+        }),
+        ['<C-Space>'] = cmp.mapping.complete(),
+        ['<C-e>'] = cmp.mapping(cmp.mapping.abort(), {'i', 's'}),
+        ['<C-d>'] = cmp.mapping(cmp.mapping.scroll_docs(4), {'i', 's'}),
+        ['<C-u>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), {'i', 's'}),
         ["<Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
                 cmp.select_next_item()
@@ -35,7 +42,6 @@ cmp.setup({
                 fallback()
             end
         end, {"i", "s"}),
-
         ["<S-Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
                 cmp.select_prev_item()
@@ -44,20 +50,10 @@ cmp.setup({
             else
                 fallback()
             end
-        end, {"i", "s"}),
-        -- ['<Tab>'] = cmp.mapping(cmp.mapping.select_next_item(), {'i', 's'}),
-        -- ['<S-Tab>'] = cmp.mapping(cmp.mapping.select_prev_item(), {'i', 's'}),
-        ['<CR>'] = cmp.mapping.confirm({
-            behavior = cmp.ConfirmBehavior.Replace,
-            select = false
-        }),
-        ['<C-Space>'] = cmp.mapping.complete(),
-        ['<C-e>'] = cmp.mapping(cmp.mapping.abort(), {'i', 's'}),
-        ['<C-d>'] = cmp.mapping(cmp.mapping.scroll_docs(4), {'i', 's'}),
-        ['<C-u>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), {'i', 's'})
-    },
+        end, {"i", "s"})
+    }),
 
-    documentation = {maxheight = 10},
+    window = {documentation = {maxheight = 10}},
 
     experimental = {ghost_text = true, native_menu = false},
 
