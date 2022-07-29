@@ -28,3 +28,5 @@ nnoremap <leader>nt :NvimTreeToggle<CR>
 nnoremap <leader>nf :NvimTreeFindFile<CR>
 
 nnoremap <space> za
+
+nnoremap <leader>rls :source ~/.config/nvim/lua/chuckpr/luasnip.lua<CR>
