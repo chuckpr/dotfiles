@@ -6,9 +6,9 @@ lspkind.init()
 local has_words_before = function()
     local line, col = unpack(vim.api.nvim_win_get_cursor(0))
     return col ~= 0 and
-               vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col,
-                                                                          col)
-                   :match("%s") == nil
+        vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col,
+            col)
+        :match("%s") == nil
 end
 
 cmp.setup({
@@ -18,19 +18,19 @@ cmp.setup({
     },
 
     sources = {
-        {name = 'nvim_lsp'}, {name = 'buffer'}, {name = 'luasnip'},
-        {name = 'path'}, {name = 'cmp_tabnine'}
+        { name = 'nvim_lsp' }, { name = 'buffer' }, { name = 'luasnip' },
+        { name = 'path' }, { name = 'cmp_tabnine' }
     },
 
     mapping = cmp.mapping.preset.insert({
         ['<CR>'] = cmp.mapping.confirm({
             behavior = cmp.ConfirmBehavior.Replace,
-            select = false
+            select = true
         }),
         ['<C-Space>'] = cmp.mapping.complete(),
-        ['<C-e>'] = cmp.mapping(cmp.mapping.abort(), {'i', 's'}),
-        ['<C-d>'] = cmp.mapping(cmp.mapping.scroll_docs(4), {'i', 's'}),
-        ['<C-u>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), {'i', 's'}),
+        ['<C-e>'] = cmp.mapping(cmp.mapping.abort(), { 'i', 's' }),
+        ['<C-d>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 's' }),
+        ['<C-u>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 's' }),
         ["<Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
                 cmp.select_next_item()
@@ -41,7 +41,7 @@ cmp.setup({
             else
                 fallback()
             end
-        end, {"i", "s"}),
+        end, { "i", "s" }),
         ["<S-Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
                 cmp.select_prev_item()
@@ -50,12 +50,12 @@ cmp.setup({
             else
                 fallback()
             end
-        end, {"i", "s"})
+        end, { "i", "s" })
     }),
 
-    window = {documentation = {maxheight = 10}},
+    window = { documentation = { maxheight = 10 } },
 
-    experimental = {ghost_text = true, native_menu = false},
+    experimental = { ghost_text = true, native_menu = false },
 
     formatting = {
         format = lspkind.cmp_format({
@@ -74,15 +74,16 @@ cmp.setup({
 
 -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
 -- search
-cmp.setup.cmdline('/', {sources = {{name = 'buffer'}}})
+cmp.setup.cmdline('/', {
+    mapping = cmp.mapping.preset.cmdline(),
+    sources = { { name = 'buffer' } }
+})
 
--- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
--- command  mode
 cmp.setup.cmdline(':', {
-    sources = {
-        {name = 'path', keyword_length = 2},
-        {name = 'cmdline', keyword_length = 2}
-    }
+    mapping = cmp.mapping.preset.cmdline(),
+    sources = cmp.config.sources({ { name = 'path' } }, {
+        { name = 'cmdline', option = { ignore_cmds = { 'Man', '!' } } }
+    })
 })
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()

@@ -23,9 +23,6 @@ call minpac#add('Vimjas/vim-python-pep8-indent')
 " lualine
 call minpac#add('nvim-lualine/lualine.nvim')
 
-" tabnine source
-call minpac#add('tzachar/cmp-tabnine', {'do': '!./install.sh'})
-
 " toggleterm
 call minpac#add('akinsho/toggleterm.nvim')
 
@@ -44,16 +41,6 @@ call minpac#add('lewis6991/gitsigns.nvim')
 
 " indent line for Neovim
 call minpac#add('lukas-reineke/indent-blankline.nvim')
-
-" LSP
-call minpac#add('neovim/nvim-lspconfig')
-call minpac#add('hrsh7th/nvim-cmp')
-call minpac#add('hrsh7th/cmp-buffer')
-call minpac#add('hrsh7th/cmp-nvim-lsp')
-call minpac#add('hrsh7th/cmp-buffer')
-call minpac#add('hrsh7th/cmp-path')
-call minpac#add('hrsh7th/cmp-cmdline')
-call minpac#add('ray-x/lsp_signature.nvim')
 
 " snippets
 call minpac#add('L3MON4D3/LuaSnip')
@@ -91,13 +78,9 @@ call minpac#add('ktakata/minpac', {'type': 'opt'})
 call minpac#add('kyazdani42/nvim-web-devicons')
 call minpac#add('folke/trouble.nvim')
 
-" Notify
-call minpac#add('rcarriga/nvim-notify')
-
 lua << EOF
   require("trouble").setup {
   }
-  vim.notify = require("notify")
 EOF
 
 command! PacUpdate call minpac#update()
