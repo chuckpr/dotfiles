@@ -1,0 +1,17 @@
+command_timeout = 1200
+
+format = "$all"
+
+[python]
+symbol = ' '
+style = 'bold #4B8BBE'
+
+[aws]
+symbol = ' '
+style = 'bold #FF9900'
+
+[battery]
+full_symbol = '🔋'
+charging_symbol = '↑ '
+discharging_symbol = '↓ '
+empty_symbol = '🪫'
