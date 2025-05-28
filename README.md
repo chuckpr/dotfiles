@@ -1,23 +1,15 @@
 # `dotfiles`
 
-## set up
+## Set up
 
-### Neovim
+Copy `stowrc` to home directory:
 
-To set up [Neovim](https://neovim.io/):
 ```bash
-cd ~
-gh repo clone chuckpr/dotfiles && cd dotfiles
-stow nvim  # will create simlink for ~/.config/nvim to ~/dotfiles/nvim
+cp .stowrc ~/
 ```
 
-### Tmux
+Run `stow`:
 
 ```bash
-stow tmux
-```
-
-### Hyper
-```bash
-stow hyper
+stow .
 ```
