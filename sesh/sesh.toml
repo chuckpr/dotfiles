@@ -1,0 +1,10 @@
+# open the file manager
+[[session]]
+name = "Downloads 📥"
+path = "~/Downloads"
+startup_command = "yazi"
+
+[[session]]
+name = "Dotfiles 🗂️"
+path = "~/dotfiles"
+startup_command = "nvim -c 'lua Snacks.picker.git_files()'"
