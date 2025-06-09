@@ -1,6 +1,7 @@
 return {
   "echasnovski/mini.diff",
   event = "VeryLazy",
+  -- Keymap: <leader>go to toggle diff overlay for current buffer
   keys = {
     {
       "<leader>go",
