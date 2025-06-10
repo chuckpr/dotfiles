@@ -8,3 +8,12 @@ startup_command = "yazi"
 name = "Dotfiles 🗂️"
 path = "~/dotfiles"
 startup_command = "nvim -c 'lua Snacks.picker.git_files()'"
+
+[[session]]
+name = "Data730 📓"
+path = "~/working/data730-lecture-notebooks/"
+windows = ["pixi-jupyter"]
+
+[[window]]
+name = "pixi-jupyter"
+startup_script = "pixi run jupyter lab --no-browser --ip '*'"
