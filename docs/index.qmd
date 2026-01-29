@@ -1,0 +1,45 @@
+---
+title: "Welcome to Dotfiles Documentation"
+---
+
+## Hello World! 👋
+
+This is the documentation site for my personal dotfiles repository.
+
+### What's Inside
+
+This repository contains my carefully curated development environment configurations:
+
+- **LazyVim**: Neovim configuration with 150+ plugins and AI integration
+- **Tmux + Sesh**: Terminal multiplexing with session management
+- **Wezterm**: Modern GPU-accelerated terminal emulator
+- **Starship**: Fast, customizable shell prompt
+- **Atuin**: Encrypted command history with sync
+
+### Quick Start
+
+```bash
+# Clone the repository
+git clone https://github.com/chuckpr/dotfiles.git
+cd dotfiles
+
+# Deploy configurations with GNU Stow
+stow lazyvim
+stow tmux
+stow wezterm
+stow starship
+stow sesh
+```
+
+### Theme
+
+Everything is themed with **Gruvbox Dark** for a consistent visual experience across all tools.
+
+::: {.callout-note}
+This site is built with [Quarto](https://quarto.org) and deployed automatically via GitHub Actions.
+:::
+
+### Next Steps
+
+- Learn more in [Getting Started](getting-started.qmd)
+- Explore the [configuration sections](#configuration) in the sidebar

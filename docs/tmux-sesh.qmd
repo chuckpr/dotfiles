@@ -1,0 +1,27 @@
+---
+title: "Tmux & Sesh"
+---
+
+## Tmux
+
+Terminal multiplexer for managing multiple terminal sessions.
+
+### Key Bindings
+
+- `Ctrl+b` + `b`: Open Sesh session picker
+- `Ctrl+b` + `c`: Create new window
+- `Ctrl+b` + `%`: Split pane vertically
+- `Ctrl+b` + `"`: Split pane horizontally
+
+## Sesh
+
+Session manager for Tmux with pre-configured sessions.
+
+### Pre-configured Sessions
+
+- **Downloads**: File management with Yazi
+- **Dotfiles**: Config editing with Neovim
+- **Data730**: Jupyter notebooks
+- **Blog**: Blog writing environment
+
+More documentation coming soon...

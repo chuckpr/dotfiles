@@ -1,0 +1,86 @@
+---
+title: "Getting Started"
+---
+
+## Prerequisites
+
+- **GNU Stow**: For symlink management
+- **Git**: For version control
+- **Neovim** (>= 0.9.0): For LazyVim
+- **Tmux**: Terminal multiplexer
+- **Wezterm**: Terminal emulator
+
+## Installation
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/chuckpr/dotfiles.git ~/dotfiles
+cd ~/dotfiles
+```
+
+### 2. Deploy Configurations
+
+Use GNU Stow to create symlinks:
+
+```bash
+# Deploy specific configurations
+stow lazyvim    # → ~/.config/nvim
+stow tmux       # → ~/.config/tmux
+stow wezterm    # → ~/.config/wezterm
+stow starship   # → ~/.config/starship
+stow sesh       # → ~/.config/sesh
+
+# Or deploy all at once
+stow */
+```
+
+### 3. Install Plugin Managers
+
+**Tmux Plugin Manager (TPM):**
+```bash
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+```
+
+Then inside tmux: `Ctrl+b` + `I` to install plugins.
+
+**LazyVim Plugins:**
+Open Neovim and LazyVim will automatically install plugins:
+```bash
+nvim
+```
+
+## Configuration
+
+### Atuin (Special Case)
+
+Atuin is **not** managed by Stow. Its configuration lives at:
+```
+~/.local/share/atuin/config.toml
+```
+
+Manually copy or symlink if needed.
+
+## Verification
+
+Test your setup:
+
+```bash
+# Check Neovim
+nvim --version
+
+# Check Tmux
+tmux -V
+
+# Start a Sesh session
+sesh connect dotfiles
+```
+
+::: {.callout-tip}
+## Troubleshooting
+
+If symlinks aren't created, verify your `.stowrc` is configured correctly:
+```bash
+cat ~/.stowrc
+```
+:::

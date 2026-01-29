@@ -1,0 +1,17 @@
+---
+title: "Terminal Configuration"
+---
+
+## Wezterm
+
+GPU-accelerated terminal emulator.
+
+## Starship
+
+Fast, customizable shell prompt with:
+- Python environment indicators
+- AWS profile display
+- Battery status
+- Git status
+
+More documentation coming soon...

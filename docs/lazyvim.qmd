@@ -1,0 +1,29 @@
+---
+title: "LazyVim Configuration"
+---
+
+## Overview
+
+LazyVim is a Neovim configuration framework that provides a modern IDE experience.
+
+## Plugin Management
+
+Plugins are managed via Lazy.nvim and organized in `lua/plugins/`.
+
+### Key Plugins
+
+- **CodeCompanion**: AI integration with Claude Opus 4.5
+- **Which-key**: Helix-style keymaps
+- **Render Markdown**: Enhanced markdown rendering
+- **Jupytext**: Edit Jupyter notebooks as `.py` files
+
+## Usage
+
+```bash
+# Inside Neovim
+:Lazy                 # Open plugin manager
+:Lazy sync            # Update plugins
+:LazyExtras           # Browse available extras
+```
+
+More documentation coming soon...

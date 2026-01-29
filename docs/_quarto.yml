@@ -1,0 +1,54 @@
+project:
+  type: website
+  output-dir: _site
+
+website:
+  title: "Dotfiles Documentation"
+  site-url: "https://chuckpr.github.io/dotfiles"
+  site-path: "/docs"
+  repo-url: "https://github.com/chuckpr/dotfiles"
+  repo-actions: [edit, issue]
+
+  page-navigation: true
+
+  navbar:
+    background: primary
+    search: true
+    left:
+      - text: "Home"
+        href: index.qmd
+      - text: "Getting Started"
+        href: getting-started.qmd
+    right:
+      - icon: github
+        href: "https://github.com/chuckpr/dotfiles"
+        aria-label: GitHub
+
+  sidebar:
+    style: "docked"
+    background: light
+    contents:
+      - section: "Overview"
+        contents:
+          - index.qmd
+          - getting-started.qmd
+      - section: "Configuration"
+        contents:
+          - text: "LazyVim"
+            href: lazyvim.qmd
+          - text: "Tmux & Sesh"
+            href: tmux-sesh.qmd
+          - text: "Terminal"
+            href: terminal.qmd
+
+format:
+  html:
+    theme:
+      - cosmo
+      - custom.scss
+    css: styles.css
+    highlight-style: gruvbox-dark
+    toc: true
+    toc-depth: 3
+    code-copy: true
+    code-overflow: wrap
