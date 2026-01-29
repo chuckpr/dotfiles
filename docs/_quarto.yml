@@ -5,7 +5,6 @@ project:
 website:
   title: "Dotfiles Documentation"
   site-url: "https://chuckpr.github.io/dotfiles"
-  site-path: "/docs"
   repo-url: "https://github.com/chuckpr/dotfiles"
   repo-actions: [edit, issue]
 
