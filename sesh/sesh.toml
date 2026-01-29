@@ -14,6 +14,14 @@ name = "Data730 📓"
 path = "~/working/data730-lecture-notebooks/"
 windows = ["pixi-jupyter"]
 
+[[session]]
+name = "Blog 🪵"
+path = "~/working/chuckpr.github.io-worktree/"
+
+[[session]]
+name = "Active learning 🧬"
+path = "~/working/lifeedit-ai-notebooks-worktree/activelearning-loop/ai_activelearning-loop/"
+
 [[window]]
 name = "pixi-jupyter"
 startup_script = "pixi run jupyter lab --no-browser --ip '*'"
