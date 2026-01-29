@@ -8,7 +8,6 @@ return {
     spec = {
       {
         mode = { "n", "v" },
-        { "<leader>C", group = "CodeCompanion" },
         { "<leader><tab>", group = "tabs" },
         { "<leader>c", group = "code" },
         { "<leader>d", group = "debug" },
