@@ -1,5 +1,5 @@
 return {
-  "echasnovski/mini.diff",
+  "nvim-mini/mini.diff",
   event = "VeryLazy",
   -- Keymap: <leader>go to toggle diff overlay for current buffer
   keys = {

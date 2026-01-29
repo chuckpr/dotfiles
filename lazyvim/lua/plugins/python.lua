@@ -40,7 +40,7 @@ return {
 
   -- Ensure basedpyright is installed via mason
   {
-    "williamboman/mason.nvim",
+    "mason-org/mason.nvim",
     opts = {
       ensure_installed = {
         "basedpyright",
