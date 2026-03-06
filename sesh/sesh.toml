@@ -7,7 +7,7 @@ startup_command = "yazi"
 [[session]]
 name = "Dotfiles 🗂️"
 path = "~/dotfiles"
-startup_command = "nvim -c 'lua Snacks.picker.git_files()'"
+windows = ["editor", "claude-code", "quarto-preview"]
 
 [[session]]
 name = "Data730 📓"
@@ -25,3 +25,15 @@ path = "~/working/lifeedit-ai-notebooks-worktree/activelearning-loop/ai_activele
 [[window]]
 name = "pixi-jupyter"
 startup_script = "pixi run jupyter lab --no-browser --ip '*'"
+
+[[window]]
+name = "editor"
+startup_script = "nvim -c 'lua Snacks.picker.git_files()'"
+
+[[window]]
+name = "claude-code"
+startup_script = "claude code"
+
+[[window]]
+name = "quarto-preview"
+startup_script = "quarto preview docs/"

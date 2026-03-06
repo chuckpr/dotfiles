@@ -5,7 +5,8 @@
 ### Neovim
 
 To set up [Neovim](https://neovim.io/):
-```bash
+
+```
 cd ~
 gh repo clone chuckpr/dotfiles && cd dotfiles
 stow nvim  # will create simlink for ~/.config/nvim to ~/dotfiles/nvim
@@ -13,11 +14,36 @@ stow nvim  # will create simlink for ~/.config/nvim to ~/dotfiles/nvim
 
 ### Tmux
 
-```bash
+```
 stow tmux
 ```
 
 ### Hyper
-```bash
+
+```
 stow hyper
+```
+
+### Claude Code
+
+Manages `~/.claude/settings.json` and `~/.claude/hooks/`. The `projects/`
+directory and any externally-maintained skills are intentionally excluded.
+
+To migrate existing config into dotfiles for the first time:
+
+```
+bash ~/dotfiles/migrate_claude_to_dotfiles.sh
+```
+
+On a fresh machine (after cloning dotfiles):
+
+```
+stow --no-folding claude
+```
+
+To verify symlinks are in place:
+
+```
+cd ~/.claude
+find . -maxdepth 2 -type l | xargs -I{} sh -c 'echo "{} -> $(readlink {})"'
 ```

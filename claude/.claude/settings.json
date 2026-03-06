@@ -1,0 +1,78 @@
+{
+  "env": {
+    "CLAUDE_CODE_USE_BEDROCK": "true",
+    "ANTHROPIC_MODEL": "us.anthropic.claude-opus-4-6-v1",
+    "ANTHROPIC_DEFAULT_HAIKU_MODEL": "us.anthropic.claude-haiku-4-5-20251001-v1:0",
+    "AWS_PAGER": ""
+  },
+  "model": "us.anthropic.claude-opus-4-6-v1",
+  "hooks": {
+    "Notification": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 -c \"import sys,json,subprocess;d=json.loads(sys.stdin.read());cwd=d.get('cwd','');name=cwd.rsplit('/',1)[-1] if cwd else 'unknown';subprocess.run(['osascript','-e',f'display notification \\\"Claude needs your input\\\" with title \\\"🔔 Claude Code\\\" subtitle \\\"📁 {name}\\\"'])\""
+          }
+        ]
+      },
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/notification_uv.py",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Bash|Run",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/pre_tool_use_uv.py",
+            "timeout": 10
+          }
+        ]
+      },
+      {
+        "matcher": "Bash|Run",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/pre_tool_use_worktrunk.py",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 -c \"import sys,json,subprocess;d=json.loads(sys.stdin.read());cwd=d.get('cwd','');name=cwd.rsplit('/',1)[-1] if cwd else 'unknown';subprocess.run(['osascript','-e',f'display notification \\\"The task has been completed\\\" with title \\\"✅ Claude Code\\\" subtitle \\\"📁 {name}\\\"'])\""
+          }
+        ]
+      }
+    ]
+  },
+  "enabledPlugins": {
+    "pyright-lsp@claude-plugins-official": true,
+    "context7@claude-plugins-official": true,
+    "commit-commands@claude-plugins-official": true,
+    "explanatory-output-style@claude-plugins-official": true,
+    "lua-lsp@claude-plugins-official": true,
+    "code-simplifier@claude-plugins-official": true,
+    "superpowers@claude-plugins-official": true
+  },
+  "skipDangerousModePermissionPrompt": true,
+  "permissions": {
+    "allow": [
+      "Bash(uv:*)"
+    ]
+  }
+}

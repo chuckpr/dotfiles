@@ -9,7 +9,7 @@ return {
             basedpyright = {
               analysis = {
                 -- Basic type checking: only check types when hints are present
-                typeCheckingMode = "basic",
+                typeCheckingMode = "off",
 
                 -- Disable warnings about missing type information
                 -- (no errors if you don't add type hints)
