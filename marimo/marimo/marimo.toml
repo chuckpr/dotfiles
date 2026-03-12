@@ -1,0 +1,92 @@
+[runtime]
+on_cell_change = "autorun"
+auto_reload = "off"
+default_auto_download = []
+output_max_bytes = 8000000
+reactive_tests = true
+default_sql_output = "auto"
+std_stream_max_bytes = 1000000
+watcher_on_save = "lazy"
+auto_instantiate = true
+default_csv_encoding = "utf-8"
+
+[server]
+browser = "default"
+follow_symlink = false
+
+[display]
+code_editor_font_size = 22
+theme = "dark"
+default_table_max_columns = 50
+default_table_page_size = 10
+reference_highlighting = true
+default_width = "medium"
+cell_output = "below"
+dataframes = "rich"
+
+[save]
+autosave = "after_delay"
+autosave_delay = 1000
+format_on_save = false
+
+[snippets]
+custom_paths = []
+include_default_snippets = true
+
+[completion]
+copilot = false
+activate_on_typing = true
+signature_hint_on_typing = true
+
+[experimental]
+
+[language_servers.ty]
+
+[language_servers.pylsp]
+enable_pyflakes = false
+enable_mypy = true
+enable_ruff = true
+enable_pydocstyle = false
+enable_flake8 = false
+enabled = false
+enable_pylint = false
+
+[language_servers.basedpyright]
+enabled = false
+
+[language_servers.pyrefly]
+enabled = true
+
+[package_management]
+manager = "uv"
+
+[ai]
+rules = ""
+mode = "manual"
+inline_tooltip = true
+
+[ai.custom_providers]
+
+[ai.models]
+chat_model = "bedrock/us.anthropic.claude-opus-4-6-v1:0"
+custom_models = []
+displayed_models = []
+edit_model = "bedrock/us.anthropic.claude-sonnet-4-5-20250929-v1:0"
+autocomplete_model = "bedrock/us.anthropic.claude-haiku-4-5-20251001-v1:0"
+
+[mcp]
+presets = []
+
+[mcp.mcpServers]
+
+[formatting]
+line_length = 79
+
+[keymap]
+destructive_delete = true
+preset = "vim"
+
+[keymap.overrides]
+
+[diagnostics]
+sql_linter = true
