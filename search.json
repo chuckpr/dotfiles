@@ -1,0 +1,206 @@
+[
+  {
+    "objectID": "tmux-sesh.html",
+    "href": "tmux-sesh.html",
+    "title": "Tmux & Sesh",
+    "section": "",
+    "text": "Terminal multiplexer for managing multiple terminal sessions.\n\n\n\nCtrl+b + b: Open Sesh session picker\nCtrl+b + c: Create new window\nCtrl+b + %: Split pane vertically\nCtrl+b + \": Split pane horizontally",
+    "crumbs": [
+      "Home",
+      "Configuration",
+      "Tmux & Sesh"
+    ]
+  },
+  {
+    "objectID": "tmux-sesh.html#tmux",
+    "href": "tmux-sesh.html#tmux",
+    "title": "Tmux & Sesh",
+    "section": "",
+    "text": "Terminal multiplexer for managing multiple terminal sessions.\n\n\n\nCtrl+b + b: Open Sesh session picker\nCtrl+b + c: Create new window\nCtrl+b + %: Split pane vertically\nCtrl+b + \": Split pane horizontally",
+    "crumbs": [
+      "Home",
+      "Configuration",
+      "Tmux & Sesh"
+    ]
+  },
+  {
+    "objectID": "tmux-sesh.html#sesh",
+    "href": "tmux-sesh.html#sesh",
+    "title": "Tmux & Sesh",
+    "section": "Sesh",
+    "text": "Sesh\nSession manager for Tmux with pre-configured sessions.\n\nPre-configured Sessions\n\nDownloads: File management with Yazi\nDotfiles: Config editing with Neovim\nData730: Jupyter notebooks\nBlog: Blog writing environment\n\nMore documentation coming soon…",
+    "crumbs": [
+      "Home",
+      "Configuration",
+      "Tmux & Sesh"
+    ]
+  },
+  {
+    "objectID": "getting-started.html",
+    "href": "getting-started.html",
+    "title": "Getting Started",
+    "section": "",
+    "text": "GNU Stow: For symlink management\nGit: For version control\nNeovim (&gt;= 0.9.0): For LazyVim\nTmux: Terminal multiplexer\nWezterm: Terminal emulator",
+    "crumbs": [
+      "Home",
+      "Overview",
+      "Getting Started"
+    ]
+  },
+  {
+    "objectID": "getting-started.html#prerequisites",
+    "href": "getting-started.html#prerequisites",
+    "title": "Getting Started",
+    "section": "",
+    "text": "GNU Stow: For symlink management\nGit: For version control\nNeovim (&gt;= 0.9.0): For LazyVim\nTmux: Terminal multiplexer\nWezterm: Terminal emulator",
+    "crumbs": [
+      "Home",
+      "Overview",
+      "Getting Started"
+    ]
+  },
+  {
+    "objectID": "getting-started.html#installation",
+    "href": "getting-started.html#installation",
+    "title": "Getting Started",
+    "section": "Installation",
+    "text": "Installation\n\n1. Clone the Repository\ngit clone https://github.com/chuckpr/dotfiles.git ~/dotfiles\ncd ~/dotfiles\n\n\n2. Deploy Configurations\nUse GNU Stow to create symlinks:\n# Deploy specific configurations\nstow lazyvim    # → ~/.config/lazyvim\nstow tmux       # → ~/.config/tmux\nstow wezterm    # → ~/.config/wezterm\nstow starship   # → ~/.config/starship\nstow sesh       # → ~/.config/sesh\n\n# Or deploy all at once\nstow */\n\n\n3. Install Plugin Managers\nTmux Plugin Manager (TPM):\ngit clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm\nThen inside tmux: Ctrl+b + I to install plugins.\nLazyVim Plugins: Open Neovim and LazyVim will automatically install plugins. Because the config lives in ~/.config/lazyvim/ (not the default ~/.config/nvim/), you must set NVIM_APPNAME:\nNVIM_APPNAME=lazyvim nvim\nAdd this to your fish config so it applies permanently:\nset -gx NVIM_APPNAME lazyvim",
+    "crumbs": [
+      "Home",
+      "Overview",
+      "Getting Started"
+    ]
+  },
+  {
+    "objectID": "getting-started.html#configuration",
+    "href": "getting-started.html#configuration",
+    "title": "Getting Started",
+    "section": "Configuration",
+    "text": "Configuration\n\nAtuin (Special Case)\nAtuin is not managed by Stow. Its configuration lives at:\n~/.local/share/atuin/config.toml\nManually copy or symlink if needed.",
+    "crumbs": [
+      "Home",
+      "Overview",
+      "Getting Started"
+    ]
+  },
+  {
+    "objectID": "getting-started.html#verification",
+    "href": "getting-started.html#verification",
+    "title": "Getting Started",
+    "section": "Verification",
+    "text": "Verification\nTest your setup:\n# Check Neovim\nNVIM_APPNAME=lazyvim nvim --version\n\n# Check Tmux\ntmux -V\n\n# Start a Sesh session\nsesh connect dotfiles\n\n\n\n\n\n\nTroubleshooting\n\n\n\nIf symlinks aren’t created, verify your .stowrc is configured correctly:\ncat ~/.stowrc",
+    "crumbs": [
+      "Home",
+      "Overview",
+      "Getting Started"
+    ]
+  },
+  {
+    "objectID": "terminal.html",
+    "href": "terminal.html",
+    "title": "Terminal Configuration",
+    "section": "",
+    "text": "GPU-accelerated terminal emulator.",
+    "crumbs": [
+      "Home",
+      "Configuration",
+      "Terminal"
+    ]
+  },
+  {
+    "objectID": "terminal.html#wezterm",
+    "href": "terminal.html#wezterm",
+    "title": "Terminal Configuration",
+    "section": "",
+    "text": "GPU-accelerated terminal emulator.",
+    "crumbs": [
+      "Home",
+      "Configuration",
+      "Terminal"
+    ]
+  },
+  {
+    "objectID": "terminal.html#starship",
+    "href": "terminal.html#starship",
+    "title": "Terminal Configuration",
+    "section": "Starship",
+    "text": "Starship\nFast, customizable shell prompt with: - Python environment indicators - AWS profile display - Battery status - Git status\nMore documentation coming soon…",
+    "crumbs": [
+      "Home",
+      "Configuration",
+      "Terminal"
+    ]
+  },
+  {
+    "objectID": "lazyvim.html",
+    "href": "lazyvim.html",
+    "title": "LazyVim Configuration",
+    "section": "",
+    "text": "LazyVim is a Neovim configuration framework that provides a modern IDE experience. The config is deployed to ~/.config/lazyvim/ via Stow, so Neovim must be launched with NVIM_APPNAME=lazyvim (set in fish config) to pick it up instead of the default ~/.config/nvim/.",
+    "crumbs": [
+      "Home",
+      "Configuration",
+      "LazyVim"
+    ]
+  },
+  {
+    "objectID": "lazyvim.html#overview",
+    "href": "lazyvim.html#overview",
+    "title": "LazyVim Configuration",
+    "section": "",
+    "text": "LazyVim is a Neovim configuration framework that provides a modern IDE experience. The config is deployed to ~/.config/lazyvim/ via Stow, so Neovim must be launched with NVIM_APPNAME=lazyvim (set in fish config) to pick it up instead of the default ~/.config/nvim/.",
+    "crumbs": [
+      "Home",
+      "Configuration",
+      "LazyVim"
+    ]
+  },
+  {
+    "objectID": "lazyvim.html#plugin-management",
+    "href": "lazyvim.html#plugin-management",
+    "title": "LazyVim Configuration",
+    "section": "Plugin Management",
+    "text": "Plugin Management\nPlugins are managed via Lazy.nvim and organized in lua/plugins/.\n\nKey Plugins\n\nCodeCompanion: AI integration with Claude Opus 4.5\nWhich-key: Helix-style keymaps\nRender Markdown: Enhanced markdown rendering\nJupytext: Edit Jupyter notebooks as .py files",
+    "crumbs": [
+      "Home",
+      "Configuration",
+      "LazyVim"
+    ]
+  },
+  {
+    "objectID": "lazyvim.html#usage",
+    "href": "lazyvim.html#usage",
+    "title": "LazyVim Configuration",
+    "section": "Usage",
+    "text": "Usage\n# Inside Neovim\n:Lazy                 # Open plugin manager\n:Lazy sync            # Update plugins\n:LazyExtras           # Browse available extras\nMore documentation coming soon…",
+    "crumbs": [
+      "Home",
+      "Configuration",
+      "LazyVim"
+    ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Welcome to Dotfiles Documentation",
+    "section": "",
+    "text": "This is the documentation site for my personal dotfiles repository.\n\n\nThis repository contains my carefully curated development environment configurations:\n\nLazyVim: Neovim configuration with 150+ plugins and AI integration\nTmux + Sesh: Terminal multiplexing with session management\nWezterm: Modern GPU-accelerated terminal emulator\nStarship: Fast, customizable shell prompt\nAtuin: Encrypted command history with sync\n\n\n\n\n# Clone the repository\ngit clone https://github.com/chuckpr/dotfiles.git\ncd dotfiles\n\n# Deploy configurations with GNU Stow\nstow lazyvim    # requires NVIM_APPNAME=lazyvim in fish config\nstow tmux\nstow wezterm\nstow starship\nstow sesh\n\n\n\nEverything is themed with Gruvbox Dark for a consistent visual experience across all tools.\n\n\n\n\n\n\nNote\n\n\n\nThis site is built with Quarto and deployed automatically via GitHub Actions.\n\n\n\n\n\n\nLearn more in Getting Started\nExplore the configuration sections in the sidebar",
+    "crumbs": [
+      "Home",
+      "Overview",
+      "Welcome to Dotfiles Documentation"
+    ]
+  },
+  {
+    "objectID": "index.html#hello-world",
+    "href": "index.html#hello-world",
+    "title": "Welcome to Dotfiles Documentation",
+    "section": "",
+    "text": "This is the documentation site for my personal dotfiles repository.\n\n\nThis repository contains my carefully curated development environment configurations:\n\nLazyVim: Neovim configuration with 150+ plugins and AI integration\nTmux + Sesh: Terminal multiplexing with session management\nWezterm: Modern GPU-accelerated terminal emulator\nStarship: Fast, customizable shell prompt\nAtuin: Encrypted command history with sync\n\n\n\n\n# Clone the repository\ngit clone https://github.com/chuckpr/dotfiles.git\ncd dotfiles\n\n# Deploy configurations with GNU Stow\nstow lazyvim    # requires NVIM_APPNAME=lazyvim in fish config\nstow tmux\nstow wezterm\nstow starship\nstow sesh\n\n\n\nEverything is themed with Gruvbox Dark for a consistent visual experience across all tools.\n\n\n\n\n\n\nNote\n\n\n\nThis site is built with Quarto and deployed automatically via GitHub Actions.\n\n\n\n\n\n\nLearn more in Getting Started\nExplore the configuration sections in the sidebar",
+    "crumbs": [
+      "Home",
+      "Overview",
+      "Welcome to Dotfiles Documentation"
+    ]
+  }
+]

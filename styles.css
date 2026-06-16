@@ -1,0 +1,14 @@
+/* Custom CSS for dotfiles documentation */
+
+/* Let Quarto's gruvbox-dark theme handle code highlighting */
+
+/* Subtle inline code styling — override Bootstrap's purple --bs-code-color */
+:not(pre) > code {
+  --bs-code-color: #555;
+  background-color: #f0f0f0 !important;
+  color: #555;
+  padding: 0.1em 0.3em;
+  border-radius: 3px;
+  font-size: 0.9em;
+  border: none;
+}
