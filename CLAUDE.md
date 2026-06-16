@@ -25,20 +25,22 @@ This is an **integrated terminal development environment** with:
 
 ## Configuration Structure
 
+Each stow package follows the pattern `<package>/<config-dir>/files` so that stow creates `~/.config/<config-dir>/` symlinks. The `lazyvim` package uses `NVIM_APPNAME=lazyvim` so Neovim reads `~/.config/lazyvim/` instead of the default `~/.config/nvim/`.
+
 ```
 dotfiles/
-├── .stowrc              # Stow config: --target=~/.config, --ignore=atuin/*
-├── lazyvim/             # Neovim configuration (LazyVim distribution)
-│   ├── init.lua         # Entry point, loads config.lazy
-│   ├── lazy-lock.json   # Locked plugin versions
-│   ├── lazyvim.json     # Enabled LazyVim extras
-│   ├── lua/config/      # Core config (lazy.lua, keymaps.lua, options.lua)
-│   └── lua/plugins/     # Custom plugin specs (codecompanion, colorscheme, etc.)
-├── tmux/tmux.conf       # Tmux: keybinds, TPM plugins, Sesh integration
-├── sesh/sesh.toml       # Pre-configured sessions (Downloads, Dotfiles, Data730, Blog, etc.)
-├── wezterm/wezterm.lua  # Terminal emulator: font, colors, scrollback
-├── starship/starship.toml  # Shell prompt: Python/AWS/Battery indicators
-└── atuin/config.toml    # Command history (NOT stow-managed, uses ~/.local/share/)
+├── .stowrc                        # Stow config: --target=~/.config, --ignore=atuin/*
+├── lazyvim/lazyvim/               # → ~/.config/lazyvim/ (requires NVIM_APPNAME=lazyvim)
+│   ├── init.lua                   # Entry point, loads config.lazy
+│   ├── lazy-lock.json             # Locked plugin versions
+│   ├── lazyvim.json               # Enabled LazyVim extras
+│   ├── lua/config/                # Core config (lazy.lua, keymaps.lua, options.lua)
+│   └── lua/plugins/               # Custom plugin specs (codecompanion, colorscheme, etc.)
+├── tmux/tmux/tmux.conf            # → ~/.config/tmux/tmux.conf
+├── sesh/sesh/sesh.toml            # → ~/.config/sesh/sesh.toml
+├── wezterm/wezterm/wezterm.lua    # → ~/.config/wezterm/wezterm.lua
+├── starship/starship/starship.toml  # → ~/.config/starship/starship.toml
+└── atuin/config.toml              # Command history (NOT stow-managed, uses ~/.local/share/)
 ```
 
 ## Common Commands
@@ -46,7 +48,7 @@ dotfiles/
 ### Deployment
 ```bash
 # Deploy configurations (from dotfiles directory)
-stow lazyvim    # → ~/.config/nvim
+stow lazyvim    # → ~/.config/lazyvim  (requires NVIM_APPNAME=lazyvim in fish config)
 stow tmux       # → ~/.config/tmux
 stow wezterm    # → ~/.config/wezterm
 stow starship   # → ~/.config/starship

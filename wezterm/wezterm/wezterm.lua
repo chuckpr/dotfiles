@@ -4,6 +4,7 @@ local config = wezterm.config_builder()
 
 config.font_size = 16
 config.font = wezterm.font("CaskaydiaCove Nerd Font", { weight = 700, italic = false })
+-- config.font = wezterm.font("FiraCode Nerd Font", { weight = 700, italic = false })
 config.line_height = 1.25
 -- config.color_scheme = 'Gogh (Gogh)'
 config.color_scheme = "Gruvbox Dark (Gogh)"

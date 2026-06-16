@@ -24,7 +24,7 @@ git clone https://github.com/chuckpr/dotfiles.git
 cd dotfiles
 
 # Deploy configurations with GNU Stow
-stow lazyvim
+stow lazyvim    # requires NVIM_APPNAME=lazyvim in fish config
 stow tmux
 stow wezterm
 stow starship

@@ -4,7 +4,7 @@ title: "LazyVim Configuration"
 
 ## Overview
 
-LazyVim is a Neovim configuration framework that provides a modern IDE experience.
+LazyVim is a Neovim configuration framework that provides a modern IDE experience. The config is deployed to `~/.config/lazyvim/` via Stow, so Neovim must be launched with `NVIM_APPNAME=lazyvim` (set in fish config) to pick it up instead of the default `~/.config/nvim/`.
 
 ## Plugin Management
 
