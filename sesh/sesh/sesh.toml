@@ -16,11 +16,7 @@ windows = ["pixi-jupyter"]
 
 [[session]]
 name = "Blog 🪵"
-path = "~/working/chuckpr.github.io-worktree/"
-
-[[session]]
-name = "Active learning 🧬"
-path = "~/working/lifeedit-ai-notebooks-worktree/activelearning-loop/ai_activelearning-loop/"
+path = "~/working/chuckpr.github.io/"
 
 [[window]]
 name = "pixi-jupyter"
